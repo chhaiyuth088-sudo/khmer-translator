@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +29,13 @@
       text-align: center;
       margin: 20px 0;
       color: #222;
+      font-size: 32px;
     }
 
     .translator {
       background: white;
       padding: 20px;
-      border-radius: 15px;
+      border-radius: 18px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
@@ -46,10 +47,18 @@
 
     select {
       flex: 1;
-      padding: 12px;
+      padding: 13px;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
+      background: white;
+    }
+
+    .swap {
+      width: auto;
+      padding: 10px 15px;
+      background: #555;
+      margin-bottom: 15px;
     }
 
     textarea {
@@ -57,7 +66,7 @@
       height: 160px;
       padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 18px;
       resize: vertical;
       margin-bottom: 15px;
@@ -81,12 +90,13 @@
     .result {
       margin-top: 20px;
       padding: 15px;
-      min-height: 100px;
+      min-height: 120px;
       border: 1px solid #ddd;
-      border-radius: 10px;
+      border-radius: 12px;
       background: #fafafa;
       font-size: 18px;
       white-space: pre-wrap;
+      line-height: 1.6;
     }
 
     .copy {
@@ -94,9 +104,24 @@
       background: #333;
     }
 
+    .speak {
+      margin-top: 10px;
+      background: #008000;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 12px;
+      color: #555;
+    }
+
     @media (max-width: 500px) {
       .languages {
         flex-direction: column;
+      }
+
+      h1 {
+        font-size: 27px;
       }
     }
   </style>
@@ -106,98 +131,220 @@
 
   <div class="container">
 
-    <h1>🌐 Khmer Translate</h1>
+    <h1>🌐 បកប្រែខ្មែរ</h1>
 
     <div class="translator">
 
       <div class="languages">
 
         <select id="from">
-          <option value="km">🇰🇭 Khmer</option>
+          <option value="km">🇰🇭 ភាសាខ្មែរ</option>
           <option value="en">🇬🇧 English</option>
         </select>
 
         <select id="to">
           <option value="en">🇬🇧 English</option>
-          <option value="km">🇰🇭 Khmer</option>
+          <option value="km">🇰🇭 ភាសាខ្មែរ</option>
         </select>
 
       </div>
 
+      <button class="swap" onclick="swapLanguage()">
+        🔄 ប្ដូរភាសា
+      </button>
+
       <textarea
         id="inputText"
-        placeholder="Write something here..."
+        placeholder="សរសេរអត្ថបទនៅទីនេះ..."
       ></textarea>
 
       <button onclick="translateText()">
-        Translate
+        🔵 បកប្រែ
       </button>
 
+      <div class="status" id="status"></div>
+
       <div class="result" id="result">
-        Translation will appear here...
+        លទ្ធផលបកប្រែនឹងបង្ហាញនៅទីនេះ...
       </div>
 
       <button class="copy" onclick="copyText()">
-        📋 Copy Translation
+        📋 ចម្លងការបកប្រែ
+      </button>
+
+      <button class="speak" onclick="speakText()">
+        🔊 អានសំឡេង
       </button>
 
     </div>
 
   </div>
 
+
   <script>
 
     async function translateText() {
 
-      const text = document.getElementById("inputText").value;
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const result = document.getElementById("result");
+      const text =
+        document.getElementById("inputText").value.trim();
 
-      if (!text.trim()) {
-        result.innerText = "Please enter some text.";
+      const from =
+        document.getElementById("from").value;
+
+      const to =
+        document.getElementById("to").value;
+
+      const result =
+        document.getElementById("result");
+
+      const status =
+        document.getElementById("status");
+
+
+      if (!text) {
+        result.innerText = "សូមបញ្ចូលអត្ថបទជាមុនសិន។";
         return;
       }
 
-      result.innerText = "Translating...";
 
-      /*
-        VERSION 1
-
-        This is the website interface.
-        In the next step we will connect
-        this function to a real Translation API.
-      */
-
-      if (from === "km" && to === "en") {
-
-        result.innerText =
-          "API connection will translate Khmer → English here.";
-
-      } else if (from === "en" && to === "km") {
-
-        result.innerText =
-          "API connection will translate English → Khmer here.";
-
-      } else {
-
+      if (from === to) {
         result.innerText = text;
+        return;
+      }
+
+
+      result.innerText = "កំពុងបកប្រែ...";
+      status.innerText = "⏳ សូមរង់ចាំ...";
+
+
+      try {
+
+        const url =
+          "https://api.mymemory.translated.net/get?q=" +
+          encodeURIComponent(text) +
+          "&langpair=" +
+          from + "|" + to;
+
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("API Error");
+        }
+
+
+        const data = await response.json();
+
+
+        if (
+          data.responseData &&
+          data.responseData.translatedText
+        ) {
+
+          result.innerText =
+            data.responseData.translatedText;
+
+          status.innerText = "✅ បកប្រែរួចរាល់";
+
+        } else {
+
+          throw new Error("No translation");
+
+        }
+
+
+      } catch (error) {
+
+        result.innerText =
+          "❌ មិនអាចបកប្រែបានទេ។ សូមពិនិត្យ Internet ហើយសាកម្ដងទៀត។";
+
+        status.innerText = "";
 
       }
+
     }
+
+
+    function swapLanguage() {
+
+      const from =
+        document.getElementById("from");
+
+      const to =
+        document.getElementById("to");
+
+      const oldFrom = from.value;
+
+      from.value = to.value;
+      to.value = oldFrom;
+
+
+      const input =
+        document.getElementById("inputText");
+
+      const result =
+        document.getElementById("result");
+
+
+      if (result.innerText !==
+          "លទ្ធផលបកប្រែនឹងបង្ហាញនៅទីនេះ...") {
+
+        const oldResult = result.innerText;
+
+        result.innerText = input.value;
+
+        input.value = oldResult;
+
+      }
+
+    }
+
 
     function copyText() {
 
       const text =
         document.getElementById("result").innerText;
 
+
       navigator.clipboard.writeText(text)
         .then(() => {
-          alert("Translation copied!");
+
+          alert("✅ បានចម្លងការបកប្រែ!");
+
         })
         .catch(() => {
-          alert("Could not copy the text.");
+
+          alert("❌ មិនអាចចម្លងបានទេ។");
+
         });
+
+    }
+
+
+    function speakText() {
+
+      const text =
+        document.getElementById("result").innerText;
+
+      const to =
+        document.getElementById("to").value;
+
+
+      if (!text.trim()) {
+        return;
+      }
+
+
+      const speech =
+        new SpeechSynthesisUtterance(text);
+
+
+      speech.lang =
+        to === "km" ? "km-KH" : "en-US";
+
+
+      window.speechSynthesis.speak(speech);
+
     }
 
   </script>
