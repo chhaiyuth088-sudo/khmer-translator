@@ -15,7 +15,6 @@
   --text: #1e293b;
   --muted: #64748b;
   --line: #e2e8f0;
-  --good: #10b981;
 }
 
 * { box-sizing: border-box; }
@@ -31,7 +30,7 @@ body {
 header {
   background: linear-gradient(180deg, #604af0 0%, #8942fe 100%);
   color: white;
-  padding: 16px 20px 24px;
+  padding: 18px 20px 26px;
   border-radius: 0 0 32px 32px;
   box-shadow: 0 8px 20px rgba(110, 86, 248, 0.15);
 }
@@ -42,27 +41,27 @@ header {
 .brand { font-size: 22px; font-weight: 800; }
 .flags { font-size: 16px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; }
 
-.hero { padding: 20px 0 16px; }
-.hero h1 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
-.hero p { margin: 0; opacity: 0.9; font-size: 14px; }
+.hero { padding: 16px 0 12px; }
+.hero h1 { margin: 0 0 6px; font-size: 24px; font-weight: 800; }
+.hero p { margin: 0; opacity: 0.9; font-size: 13.5px; }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .stat {
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  padding: 14px 10px;
+  border-radius: 18px;
+  padding: 12px 8px;
   text-align: center;
 }
 
-.stat b { font-size: 22px; display: block; font-weight: 800; }
-.stat span { font-size: 12px; opacity: 0.85; }
+.stat b { font-size: 20px; display: block; font-weight: 800; }
+.stat span { font-size: 11.5px; opacity: 0.85; }
 
 main { padding: 16px; }
 
@@ -92,6 +91,7 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(110, 86, 248, 0.25);
 }
 
 .level-filter {
@@ -109,10 +109,7 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
   font-weight: 800;
 }
 
-.level-btn.active {
-  background: #334155;
-  color: #fff;
-}
+.level-btn.active { background: #334155; color: #fff; }
 
 .panel { display: none; }
 .panel.active { display: block; }
@@ -131,14 +128,8 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
   gap: 14px;
 }
 
-.search-box {
-  display: flex;
-  gap: 8px;
-  margin: 4px 0 16px;
-}
-
 .search {
-  flex: 1;
+  width: 100%;
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 14px 18px;
@@ -157,8 +148,8 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
   color: var(--muted);
   font-size: 11px;
   font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 6px;
+  padding: 3px 10px;
+  border-radius: 8px;
   margin-bottom: 8px;
 }
 
@@ -176,7 +167,7 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
 
 .btn.primary { background: var(--primary); color: #fff; border: none; }
 
-.sound, .fav {
+.sound, .copy-btn {
   padding: 8px 14px;
   border-radius: 12px;
   background: var(--primary-light);
@@ -185,14 +176,52 @@ button { font: inherit; cursor: pointer; border: 0; outline: none; }
   font-size: 13px;
 }
 
-.fav.on { background: #fef3c7; color: #b45309; }
-
 .api-box {
   background: #fff;
   border: 2px dashed var(--primary);
-  border-radius: 20px;
-  padding: 16px;
-  margin-bottom: 20px;
+  border-radius: 24px;
+  padding: 18px;
+}
+
+.lang-selector-group {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.lang-select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  font-weight: 700;
+  background: #f8fafc;
+  font-size: 13.5px;
+}
+
+.swap-btn {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.load-more {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #f1f5f9;
+  border-radius: 14px;
+  font-weight: 700;
+  color: var(--muted);
 }
 
 footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size: 13px; }
@@ -231,46 +260,68 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
   <section id="home" class="panel active">
     <div class="card">
       <h3 style="margin:0 0 6px;">🔥 មេរៀនប្រចាំថ្ងៃ</h3>
-      <p style="margin:0; color:var(--muted);">រៀបចំឡើងតាមកម្រិត A1 ដល់ C2 សម្រាប់អ្នករៀនដំបូងរហូតដល់កម្រិតខ្ពស់។</p>
+      <p style="margin:0; color:var(--muted);">រៀបចំឡើងតាមកម្រិត A1 ដល់ C2 សម្រាប់អ្នករៀនដំបូងរហូតដល់កម្រិតខ្ពស់ space</p>
       <div class="actions" style="margin-top:16px;">
         <button class="btn primary" onclick="openTab('words')">ចាប់ផ្តើមរៀន →</button>
       </div>
     </div>
   </section>
 
-  <!-- WORDS PANEL WITH LEVEL FILTER -->
+  <!-- WORDS PANEL -->
   <section id="words" class="panel">
     <h2 style="font-size: 20px; margin-top: 0;">📚 វចនានុក្រមតាមកម្រិត</h2>
     
     <div class="level-filter">
       <button class="level-btn active" onclick="filterLevel('ALL')">ទាំងអស់</button>
-      <button class="level-btn" onclick="filterLevel('A1')">A1 (ដំបូង)</button>
-      <button class="level-btn" onclick="filterLevel('A2')">A2 (មូលដ្ឋាន)</button>
-      <button class="level-btn" onclick="filterLevel('B1')">B1 (មធ្យម)</button>
-      <button class="level-btn" onclick="filterLevel('B2')">B2 (បង្គួរ)</button>
-      <button class="level-btn" onclick="filterLevel('C1')">C1 (ខ្ពស់)</button>
+      <button class="level-btn" onclick="filterLevel('A1')">A1</button>
+      <button class="level-btn" onclick="filterLevel('A2')">A2</button>
+      <button class="level-btn" onclick="filterLevel('B1')">B1</button>
+      <button class="level-btn" onclick="filterLevel('B2')">B2</button>
+      <button class="level-btn" onclick="filterLevel('C1')">C1</button>
     </div>
 
-    <input id="search" class="search" style="width:100%;" placeholder="🔎 ស្វែងរកពាក្យ..." oninput="renderWords()">
+    <input id="search" class="search" placeholder="🔎 ស្វែងរកពាក្យ..." oninput="resetAndRender()">
     <div class="grid" id="wordGrid" style="margin-top:14px;"></div>
+    <button id="loadMoreBtn" class="load-more" style="display:none;" onclick="loadMore()">👇 មើលបន្ថែមទៀត...</button>
   </section>
 
-  <!-- FREE API SEARCH TOOL (5000+ WORDS) -->
+  <!-- MULTI-LANGUAGE API SEARCH TOOL -->
   <section id="api-tool" class="panel">
-    <h2 style="font-size: 20px; margin-top: 0;">🌐 ស្វែងរក និងបកប្រែ (Free API 5,000+)</h2>
+    <h2 style="font-size: 20px; margin-top: 0;">🌐 បកប្រែភាសា (Free API 5,000+)</h2>
     <div class="api-box">
-      <p style="margin-top:0; font-weight:700;">វាយបញ្ចូលពាក្យ ឬប្រយោគដើម្បីបកប្រែភ្លាមៗ៖</p>
-      <div class="search-box">
-        <input id="apiInput" class="search" placeholder="ឧទាហរណ៍: Hello / សួស្តី ...">
-        <button class="btn primary" onclick="translateWithAPI()">បកប្រែ</button>
+      <div class="lang-selector-group">
+        <select id="fromLang" class="lang-select">
+          <option value="en" selected>🇬🇧 English</option>
+          <option value="km">🇰🇭 Khmer</option>
+          <option value="ko">🇰🇷 Korean</option>
+          <option value="ja">🇯🇵 Japanese</option>
+          <option value="zh">🇨🇳 Chinese</option>
+        </select>
+
+        <button class="swap-btn" onclick="swapLanguages()">⇄</button>
+
+        <select id="toLang" class="lang-select">
+          <option value="km" selected>🇰🇭 Khmer</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="ko">🇰🇷 Korean</option>
+          <option value="ja">🇯🇵 Japanese</option>
+          <option value="zh">🇨🇳 Chinese</option>
+        </select>
       </div>
-      <div id="apiResult" style="display:none; margin-top:12px;">
-        <div class="card" style="background:#f8fafc; margin:0;">
-          <div class="badge">API RESULT</div>
-          <div id="apiTextEN" class="en" style="font-size:18px;"></div>
-          <div id="apiTextKM" class="word" style="font-size:18px; margin-top:6px;"></div>
+
+      <div style="display:flex; gap:8px;">
+        <input id="apiInput" class="search" placeholder="វាយបញ្ចូលពាក្យ ឬប្រយោគ..." onkeyup="if(event.key==='Enter') translateWithAPI()">
+        <button class="btn primary" style="white-space:nowrap;" onclick="translateWithAPI()">បកប្រែ</button>
+      </div>
+
+      <div id="apiResult" style="display:none; margin-top:16px;">
+        <div class="card" style="background:#f8fafc; margin:0; padding:16px;">
+          <div class="badge">RESULT</div>
+          <div id="apiTextSrc" class="muted" style="font-size:14px;"></div>
+          <div id="apiTextTarget" class="word" style="color:var(--primary); font-size:20px; margin-top:6px;"></div>
           <div class="actions">
-            <button class="sound" id="btnSpeakEN">🔊 English</button>
+            <button class="sound" id="btnSpeak">🔊 អានសំឡេង</button>
+            <button class="copy-btn" onclick="copyResult()">📋 Copy</button>
           </div>
         </div>
       </div>
@@ -283,68 +334,49 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
     <div class="grid">
       <div class="card">
         <span class="badge">A1 - Beginner</span>
-        <h3>🇬🇧 Verb to be (am/is/are)</h3>
+        <h3 style="margin-top:0;">🇬🇧 Verb to be</h3>
         <p><b>I am a student.</b></p>
         <p class="muted">ខ្ញុំជាសិស្ស។</p>
-      </div>
-      <div class="card">
-        <span class="badge">C1 - Advanced</span>
-        <h3>🇬🇧 Passive Voice</h3>
-        <p><b>The decision was made by the board.</b></p>
-        <p class="muted">ការសម្រេចចិត្តត្រូវបានធ្វើឡើងដោយក្រុមប្រឹក្សាភិបាល។</p>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  🌏 Learn Trio • Free API & Multi-Level Dictionary<br>
+  🌏 Learn Trio • Fast Load Architecture<br>
   Khmer 🇰🇭 • English 🇬🇧 • Korean 🇰🇷
 </footer>
 
 <script>
-// Database Categorized from A1 to C1
-const words = [
-  // A1 Level
-  { level: "A1", kh: "សួស្តី", en: "Hello", ko: "안녕하세요", cat: "ការស្វាគមន៍" },
-  { level: "A1", kh: "អរគុណ", en: "Thank you", ko: "감사합니다", cat: "ការគួរសម" },
-  { level: "A1", kh: "ទឹក", en: "Water", ko: "물", cat: "អាហារ" },
-  { level: "A1", kh: "បាទ / ចាស", en: "Yes", ko: "네", cat: "ទូទៅ" },
-  
-  // A2 Level
-  { level: "A2", kh: "ផ្សារ", en: "Market", ko: "시장", cat: "កន្លែង" },
-  { level: "A2", kh: "ទិញ", en: "Buy", ko: "사다", cat: "កិរិយាសព្ទ" },
-  { level: "A2", kh: "ថ្ងៃនេះ", en: "Today", ko: "오늘", cat: "ពេលវេលា" },
-
-  // B1 Level
-  { level: "B1", kh: "ក្រុមហ៊ុន", en: "Company", ko: "회사", cat: "ការងារ" },
-  { level: "B1", kh: "បទពិសោធន៍", en: "Experience", ko: "경험", cat: "ការងារ" },
-  { level: "B1", kh: "ធ្វើដំណើរ", en: "Travel", ko: "여행", cat: "សកម្មភាព" },
-
-  // B2 Level
-  { level: "B2", kh: "ការអភិវឌ្ឍ", en: "Development", ko: "발전", cat: "សង្គម" },
-  { level: "B2", kh: "ឱកាស", en: "Opportunity", ko: "기회", cat: "ធុរកិច្ច" },
-
-  // C1 Level
-  { level: "C1", kh: "ចីរភាព", en: "Sustainability", ko: "지속 가능성", cat: "កម្រិតខ្ពស់" },
-  { level: "C1", kh: "សេដ្ឋកិច្ច", en: "Economy", ko: "경제", cat: "កម្រិតខ្ពស់" }
-];
-
+let words = [];
+let filteredWords = [];
+let currentPage = 1;
+const pageSize = 20;
 let currentLevel = "ALL";
-let favorites = JSON.parse(localStorage.getItem("learnTrioFav") || "[]");
+let lastTranslatedText = "";
 
-function speak(text, lang) {
+async function loadJSONData() {
+  try {
+    const res = await fetch('words.json');
+    words = await res.json();
+    document.getElementById("count").textContent = words.length;
+    resetAndRender();
+  } catch (err) {
+    console.error("Error loading JSON database:", err);
+  }
+}
+
+function speak(text, langCode) {
   if (!("speechSynthesis" in window)) return alert("ទូរស័ព្ទមិនគាំទ្រសំឡេងទេ");
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang;
+  u.lang = langCode;
   speechSynthesis.speak(u);
 }
 
 function openTab(id) {
   document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === id));
-  if (id === "words") renderWords();
 }
 
 document.querySelectorAll(".tabs button").forEach(b => {
@@ -354,15 +386,16 @@ document.querySelectorAll(".tabs button").forEach(b => {
 function filterLevel(level) {
   currentLevel = level;
   document.querySelectorAll(".level-btn").forEach(b => {
-    b.classList.toggle("active", b.textContent.includes(level) || (level==='ALL' && b.textContent==='ទាំងអស់'));
+    b.classList.toggle("active", b.textContent === level || (level==='ALL' && b.textContent==='ទាំងអស់'));
   });
-  renderWords();
+  resetAndRender();
 }
 
-function renderWords() {
+function resetAndRender() {
+  currentPage = 1;
   const search = (document.getElementById("search")?.value || "").toLowerCase();
   
-  const filtered = words.filter(item => {
+  filteredWords = words.filter(item => {
     const matchLevel = (currentLevel === "ALL" || item.level === currentLevel);
     const matchSearch = item.kh.toLowerCase().includes(search) || 
                         item.en.toLowerCase().includes(search) || 
@@ -370,54 +403,86 @@ function renderWords() {
     return matchLevel && matchSearch;
   });
 
-  const wordGrid = document.getElementById("wordGrid");
-  if (wordGrid) {
-    wordGrid.innerHTML = filtered.map((x, i) => `
-      <div class="card">
-        <span class="badge">${x.level} • ${x.cat}</span>
-        <div class="word">${x.kh}</div>
-        <div class="en">${x.en}</div>
-        <div class="ko">${x.ko}</div>
-        <div class="actions">
-          <button class="sound" onclick="speak('${x.en}','en-US')">🔊 EN</button>
-          <button class="sound" onclick="speak('${x.ko}','ko-KR')">🔊 KR</button>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  const countEl = document.getElementById("count");
-  if (countEl) countEl.textContent = words.length;
+  document.getElementById("wordGrid").innerHTML = "";
+  renderBatch();
 }
 
-// Free MyMemory API Integration
+function renderBatch() {
+  const wordGrid = document.getElementById("wordGrid");
+  const start = 0;
+  const end = currentPage * pageSize;
+  const itemsToRender = filteredWords.slice(start, end);
+
+  wordGrid.innerHTML = itemsToRender.map((x) => `
+    <div class="card">
+      <span class="badge">${x.level} • ${x.cat}</span>
+      <div class="word">${x.kh}</div>
+      <div class="en">${x.en}</div>
+      <div class="ko">${x.ko}</div>
+      <div class="actions">
+        <button class="sound" onclick="speak('${x.en}','en-US')">🔊 EN</button>
+        <button class="sound" onclick="speak('${x.ko}','ko-KR')">🔊 KR</button>
+      </div>
+    </div>
+  `).join("");
+
+  const loadBtn = document.getElementById("loadMoreBtn");
+  if (end < filteredWords.length) {
+    loadBtn.style.display = "block";
+  } else {
+    loadBtn.style.display = "none";
+  }
+}
+
+function loadMore() {
+  currentPage++;
+  renderBatch();
+}
+
+function swapLanguages() {
+  const fromSelect = document.getElementById("fromLang");
+  const toSelect = document.getElementById("toLang");
+  const temp = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = temp;
+}
+
 async function translateWithAPI() {
   const query = document.getElementById("apiInput").value.trim();
+  const from = document.getElementById("fromLang").value;
+  const to = document.getElementById("toLang").value;
+
   if (!query) return;
 
   const resBox = document.getElementById("apiResult");
-  const textEN = document.getElementById("apiTextEN");
-  const textKM = document.getElementById("apiTextKM");
+  const textSrc = document.getElementById("apiTextSrc");
+  const textTarget = document.getElementById("apiTextTarget");
   
-  textEN.textContent = "កំពុងស្វែងរក...";
-  textKM.textContent = "";
+  textSrc.textContent = `ដើម (${from.toUpperCase()}): ${query}`;
+  textTarget.textContent = "កំពុងបកប្រែ...";
   resBox.style.display = "block";
 
   try {
-    const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=en|km`);
+    const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=${from}|${to}`);
     const data = await res.json();
     
-    const translated = data.responseData.translatedText;
-    textEN.textContent = `EN: ${query}`;
-    textKM.textContent = `KM: ${translated}`;
-    
-    document.getElementById("btnSpeakEN").onclick = () => speak(query, 'en-US');
+    lastTranslatedText = data.responseData.translatedText;
+    textTarget.textContent = lastTranslatedText;
+
+    const langMap = { en: 'en-US', km: 'km-KH', ko: 'ko-KR', ja: 'ja-JP', zh: 'zh-CN' };
+    document.getElementById("btnSpeak").onclick = () => speak(lastTranslatedText, langMap[to] || 'en-US');
   } catch (err) {
-    textEN.textContent = "មានបញ្ហាក្នុងការភ្ជាប់ API";
+    textTarget.textContent = "មានបញ្ហាក្នុងការភ្ជាប់ API";
   }
 }
 
-renderWords();
+function copyResult() {
+  if (!lastTranslatedText) return;
+  navigator.clipboard.writeText(lastTranslatedText);
+  alert("បាន Copy រួចរាល់!");
+}
+
+loadJSONData();
 </script>
 </body>
 </html>
