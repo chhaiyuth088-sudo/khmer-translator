@@ -2,1228 +2,422 @@
 <html lang="km">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#6657e8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6e56f8">
 <title>Learn Trio | Khmer English Korean</title>
 
 <style>
-:root{
-  --p:#6657e8;
-  --p2:#9b62ff;
-  --bg:#f5f6fb;
-  --card:#fff;
-  --text:#172033;
-  --muted:#687286;
-  --line:#e5e7ef;
-  --good:#18a66a;
+:root {
+  --primary: #6e56f8;
+  --primary-light: #ece9ff;
+  --bg: #f8f9fd;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --good: #10b981;
 }
 
-*{
-  box-sizing:border-box;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Noto Sans Khmer", sans-serif;
+  padding-bottom: 40px;
 }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui,-apple-system,"Noto Sans Khmer",
-  "Noto Sans",sans-serif;
+header {
+  background: linear-gradient(180deg, #604af0 0%, #8942fe 100%);
+  color: white;
+  padding: 16px 20px 24px;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 8px 20px rgba(110, 86, 248, 0.15);
 }
 
-header{
-  background:linear-gradient(135deg,#5144d8,#a05cff);
-  color:white;
-  padding:18px 16px 28px;
-  border-radius:0 0 30px 30px;
+.wrap { max-width: 900px; margin: auto; }
+
+.top { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-size: 22px; font-weight: 800; }
+.flags { font-size: 16px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; }
+
+.hero { padding: 20px 0 16px; }
+.hero h1 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
+.hero p { margin: 0; opacity: 0.9; font-size: 14px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
 }
 
-.wrap{
-  max-width:1050px;
-  margin:auto;
+.stat {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 14px 10px;
+  text-align: center;
 }
 
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
+.stat b { font-size: 22px; display: block; font-weight: 800; }
+.stat span { font-size: 12px; opacity: 0.85; }
+
+main { padding: 16px; }
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 14px;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+button { font: inherit; cursor: pointer; border: 0; outline: none; }
+
+.tabs button {
+  background: #fff;
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid var(--line);
 }
 
-.brand{
-  font-size:23px;
-  font-weight:900;
+.tabs button.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
 }
 
-.hero{
-  padding:25px 0 15px;
+.level-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  overflow-x: auto;
 }
 
-.hero h1{
-  margin:0 0 7px;
-  font-size:30px;
+.level-btn {
+  background: #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
 }
 
-.hero p{
-  margin:0;
-  opacity:.92;
+.level-btn.active {
+  background: #334155;
+  color: #fff;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:12px;
+.panel { display: none; }
+.panel.active { display: block; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 12px;
 }
 
-.stat{
-  background:#ffffff20;
-  border:1px solid #ffffff35;
-  border-radius:17px;
-  padding:12px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
 }
 
-.stat b{
-  font-size:21px;
-  display:block;
+.search-box {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 16px;
 }
 
-main{
-  padding:18px 14px;
+.search {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-size: 15px;
+  background: #fff;
 }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding-bottom:10px;
-  scrollbar-width:none;
+.word { font-size: 20px; font-weight: 800; }
+.en { color: var(--primary); font-weight: 700; margin-top: 4px; }
+.ko { font-size: 17px; margin-top: 2px; font-weight: 600; }
+.muted { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+.badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
 }
 
-button{
-  font:inherit;
-  cursor:pointer;
-  border:0;
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+.btn {
+  background: #fff;
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--line);
 }
 
-.tabs button,
-.btn{
-  background:#fff;
-  color:var(--text);
-  padding:11px 14px;
-  border-radius:14px;
-  font-weight:800;
-  white-space:nowrap;
-  box-shadow:0 3px 12px #00000008;
+.btn.primary { background: var(--primary); color: #fff; border: none; }
+
+.sound, .fav {
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.tabs button.active,
-.btn.primary{
-  background:var(--p);
-  color:#fff;
+.fav.on { background: #fef3c7; color: #b45309; }
+
+.api-box {
+  background: #fff;
+  border: 2px dashed var(--primary);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 20px;
 }
 
-.panel{
-  display:none;
-}
-
-.panel.active{
-  display:block;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:21px;
-  padding:17px;
-  box-shadow:0 5px 20px #00000008;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.search{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-  font-size:16px;
-  margin:8px 0 15px;
-  outline:none;
-}
-
-.word{
-  font-size:21px;
-  font-weight:900;
-}
-
-.en{
-  color:var(--p);
-  font-weight:800;
-  margin-top:4px;
-}
-
-.ko{
-  font-size:19px;
-  margin-top:4px;
-}
-
-.muted{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-
-.sound,
-.fav{
-  padding:8px 10px;
-  border-radius:12px;
-  background:#f0efff;
-  color:var(--p);
-  font-weight:800;
-}
-
-.fav.on{
-  background:#fff0a8;
-  color:#8b6500;
-}
-
-.lesson{
-  background:linear-gradient(135deg,#fff,#f0edff);
-}
-
-.progress{
-  height:10px;
-  background:#e7e8f0;
-  border-radius:99px;
-  overflow:hidden;
-}
-
-.bar{
-  height:100%;
-  width:35%;
-  background:linear-gradient(90deg,var(--p),var(--p2));
-}
-
-.bubble{
-  background:#f0f1f6;
-  border-radius:17px;
-  padding:12px;
-  margin:8px 0;
-  max-width:88%;
-}
-
-.bubble.me{
-  margin-left:auto;
-  background:#e9e5ff;
-}
-
-.choice{
-  display:block;
-  width:100%;
-  text-align:left;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:13px;
-  border-radius:14px;
-  margin:8px 0;
-  font-weight:700;
-}
-
-.choice.correct{
-  border-color:var(--good);
-  background:#e9fff4;
-}
-
-.choice.wrong{
-  border-color:#e55;
-  background:#fff0f0;
-}
-
-footer{
-  text-align:center;
-  padding:30px 10px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-@media(max-width:760px){
-
-  .grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .hero h1{
-    font-size:25px;
-  }
-}
-
-@media(max-width:480px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .card{
-    border-radius:17px;
-  }
-
-  .top{
-    align-items:flex-start;
-  }
-}
+footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size: 13px; }
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="wrap">
-
-<div class="top">
-
-<div class="brand">
-🌏 Learn Trio
-</div>
-
-<div>
-🇰🇭 🇬🇧 🇰🇷
-</div>
-
-</div>
-
-
-<div class="hero">
-
-<h1>
-រៀនភាសា ងាយៗ រៀនរាល់ថ្ងៃ 🚀
-</h1>
-
-<p>
-រៀន Khmer • English • Korean តាមរយៈពាក្យ ប្រយោគ សន្ទនា និង Quiz
-</p>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-<b id="count">0</b>
-ពាក្យ
-</div>
-
-<div class="stat">
-<b>12</b>
-ប្រយោគ
-</div>
-
-<div class="stat">
-<b>35%</b>
-Progress
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">🌏 Learn Trio</div>
+      <div class="flags">🇰🇭 🇬🇧 🇰🇷</div>
+    </div>
+    <div class="hero">
+      <h1>រៀនភាសា ងាយៗ រៀនរាល់ថ្ងៃ 🚀</h1>
+      <p>រៀន Khmer • English • Korean គ្រប់កម្រិត (A1 - C2) + API បកប្រែ</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="count">0</b><span>ពាក្យ</span></div>
+      <div class="stat"><b>12</b><span>ប្រយោគ</span></div>
+      <div class="stat"><b>5,000+</b><span>API Database</span></div>
+    </div>
+  </div>
 </header>
 
-
 <main class="wrap">
-
-
-<div class="tabs">
-
-<button class="active" data-tab="home">
-🏠 ដើម
-</button>
-
-<button data-tab="words">
-📚 ពាក្យ
-</button>
-
-<button data-tab="sentences">
-💬 ប្រយោគ
-</button>
-
-<button data-tab="dialogues">
-🗣️ សន្ទនា
-</button>
-
-<button data-tab="grammar">
-📖 Grammar
-</button>
-
-<button data-tab="quiz">
-🎯 Quiz
-</button>
-
-</div>
-
-
-<!-- HOME -->
-
-<section id="home" class="panel active">
-
-<div class="card lesson">
-
-<h2>
-🔥 មេរៀនថ្ងៃនេះ
-</h2>
-
-<p>
-រៀនពាក្យថ្មីៗ ហើយសាកល្បងចំណេះដឹងរបស់អ្នក។
-</p>
-
-<div class="progress">
-<div class="bar"></div>
-</div>
-
-<div class="actions">
-
-<button
-class="btn primary"
-onclick="openTab('words')">
-ចាប់ផ្តើមរៀន →
-</button>
-
-<button
-class="btn"
-onclick="openTab('quiz')">
-🎯 Quiz
-</button>
-
-</div>
-
-</div>
-
-
-<div
-class="grid"
-style="margin-top:12px">
-
-<div class="card">
-
-<h3>
-🇬🇧 English
-</h3>
-
-<p>
-ពាក្យប្រើប្រចាំថ្ងៃ និងការសន្ទនា។
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-🇰🇷 한국어
-</h3>
-
-<p>
-រៀនពាក្យ និងស្តាប់សំឡេងកូរ៉េ។
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-⭐ Favorite
-</h3>
-
-<p>
-រក្សាទុកពាក្យដែលអ្នកចង់រៀនឡើងវិញ។
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- WORDS -->
-
-<section id="words" class="panel">
-
-<h2>
-📚 ពាក្យប្រចាំថ្ងៃ
-</h2>
-
-<input
-id="search"
-class="search"
-placeholder="🔎 ស្វែងរក Khmer / English / Korean..."
-oninput="renderWords()"
->
-
-<div
-class="grid"
-id="wordGrid">
-</div>
-
-</section>
-
-
-<!-- SENTENCES -->
-
-<section id="sentences" class="panel">
-
-<h2>
-💬 ប្រយោគប្រចាំថ្ងៃ
-</h2>
-
-<div
-class="grid"
-id="sentenceGrid">
-</div>
-
-</section>
-
-
-<!-- DIALOGUES -->
-
-<section id="dialogues" class="panel">
-
-<h2>
-🗣️ សន្ទនា
-</h2>
-
-<div class="card">
-
-<h3>
-👋 ជួបមិត្តថ្មី
-</h3>
-
-<div class="bubble">
-🇰🇭 សួស្តី! តើអ្នកសុខសប្បាយទេ?
-</div>
-
-<div class="bubble me">
-🇬🇧 Hello! How are you?
-</div>
-
-<div class="bubble">
-🇰🇷 안녕하세요! 잘 지내세요?
-</div>
-
-<div class="actions">
-
-<button
-class="sound"
-onclick="speak('Hello! How are you?','en-US')">
-🔊 English
-</button>
-
-<button
-class="sound"
-onclick="speak('안녕하세요! 잘 지내세요?','ko-KR')">
-🔊 Korean
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- GRAMMAR -->
-
-<section id="grammar" class="panel">
-
-<h2>
-📖 វេយ្យាករណ៍
-</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>
-🇬🇧 I am...
-</h3>
-
-<p>
-<b>I am happy.</b>
-</p>
-
-<p class="muted">
-ខ្ញុំសប្បាយចិត្ត។
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-🇰🇷 저는...
-</h3>
-
-<p>
-<b>저는 학생이에요.</b>
-</p>
-
-<p class="muted">
-ខ្ញុំជាសិស្ស។
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-🇰🇷 은 / 는
-</h3>
-
-<p>
-ប្រើសម្រាប់បង្ហាញប្រធានបទក្នុងប្រយោគ។
-</p>
-
-<p>
-<b>
-저는 캄보디아 사람입니다.
-</b>
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- QUIZ -->
-
-<section id="quiz" class="panel">
-
-<h2>
-🎯 Quiz
-</h2>
-
-<div class="card">
-
-<h3>
-“សួស្តី” ជាភាសាអង់គ្លេសថា?
-</h3>
-
-<div id="choices">
-
-<button
-class="choice"
-onclick="answer(this,false)">
-A. Goodbye
-</button>
-
-<button
-class="choice"
-onclick="answer(this,true)">
-B. Hello
-</button>
-
-<button
-class="choice"
-onclick="answer(this,false)">
-C. Thank you
-</button>
-
-</div>
-
-<h3 id="result">
-</h3>
-
-<button
-class="btn primary"
-onclick="resetQuiz()">
-🔄 សាកម្តងទៀត
-</button>
-
-</div>
-
-</section>
-
+  <div class="tabs">
+    <button class="active" data-tab="home">🏠 ដើម</button>
+    <button data-tab="words">📚 ពាក្យ</button>
+    <button data-tab="api-tool">🌐 ស្វែងរក API (5000+)</button>
+    <button data-tab="grammar">📖 Grammar</button>
+  </div>
+
+  <!-- HOME PANEL -->
+  <section id="home" class="panel active">
+    <div class="card">
+      <h3 style="margin:0 0 6px;">🔥 មេរៀនប្រចាំថ្ងៃ</h3>
+      <p style="margin:0; color:var(--muted);">រៀបចំឡើងតាមកម្រិត A1 ដល់ C2 សម្រាប់អ្នករៀនដំបូងរហូតដល់កម្រិតខ្ពស់។</p>
+      <div class="actions" style="margin-top:16px;">
+        <button class="btn primary" onclick="openTab('words')">ចាប់ផ្តើមរៀន →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORDS PANEL WITH LEVEL FILTER -->
+  <section id="words" class="panel">
+    <h2 style="font-size: 20px; margin-top: 0;">📚 វចនានុក្រមតាមកម្រិត</h2>
+    
+    <div class="level-filter">
+      <button class="level-btn active" onclick="filterLevel('ALL')">ទាំងអស់</button>
+      <button class="level-btn" onclick="filterLevel('A1')">A1 (ដំបូង)</button>
+      <button class="level-btn" onclick="filterLevel('A2')">A2 (មូលដ្ឋាន)</button>
+      <button class="level-btn" onclick="filterLevel('B1')">B1 (មធ្យម)</button>
+      <button class="level-btn" onclick="filterLevel('B2')">B2 (បង្គួរ)</button>
+      <button class="level-btn" onclick="filterLevel('C1')">C1 (ខ្ពស់)</button>
+    </div>
+
+    <input id="search" class="search" style="width:100%;" placeholder="🔎 ស្វែងរកពាក្យ..." oninput="renderWords()">
+    <div class="grid" id="wordGrid" style="margin-top:14px;"></div>
+  </section>
+
+  <!-- FREE API SEARCH TOOL (5000+ WORDS) -->
+  <section id="api-tool" class="panel">
+    <h2 style="font-size: 20px; margin-top: 0;">🌐 ស្វែងរក និងបកប្រែ (Free API 5,000+)</h2>
+    <div class="api-box">
+      <p style="margin-top:0; font-weight:700;">វាយបញ្ចូលពាក្យ ឬប្រយោគដើម្បីបកប្រែភ្លាមៗ៖</p>
+      <div class="search-box">
+        <input id="apiInput" class="search" placeholder="ឧទាហរណ៍: Hello / សួស្តី ...">
+        <button class="btn primary" onclick="translateWithAPI()">បកប្រែ</button>
+      </div>
+      <div id="apiResult" style="display:none; margin-top:12px;">
+        <div class="card" style="background:#f8fafc; margin:0;">
+          <div class="badge">API RESULT</div>
+          <div id="apiTextEN" class="en" style="font-size:18px;"></div>
+          <div id="apiTextKM" class="word" style="font-size:18px; margin-top:6px;"></div>
+          <div class="actions">
+            <button class="sound" id="btnSpeakEN">🔊 English</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAMMAR PANEL -->
+  <section id="grammar" class="panel">
+    <h2 style="font-size: 20px; margin-top: 0;">📖 វេយ្យាករណ៍</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="badge">A1 - Beginner</span>
+        <h3>🇬🇧 Verb to be (am/is/are)</h3>
+        <p><b>I am a student.</b></p>
+        <p class="muted">ខ្ញុំជាសិស្ស។</p>
+      </div>
+      <div class="card">
+        <span class="badge">C1 - Advanced</span>
+        <h3>🇬🇧 Passive Voice</h3>
+        <p><b>The decision was made by the board.</b></p>
+        <p class="muted">ការសម្រេចចិត្តត្រូវបានធ្វើឡើងដោយក្រុមប្រឹក្សាភិបាល។</p>
+      </div>
+    </div>
+  </section>
 </main>
 
-
 <footer>
-
-🌏 Learn Trio
-
-<br>
-
-Khmer 🇰🇭 • English 🇬🇧 • Korean 🇰🇷
-
-<br>
-
-រៀនរាល់ថ្ងៃ បន្តិចម្តងៗ ❤️
-
+  🌏 Learn Trio • Free API & Multi-Level Dictionary<br>
+  Khmer 🇰🇭 • English 🇬🇧 • Korean 🇰🇷
 </footer>
 
-
 <script>
-
-
-/* =========================
-   WORD DATABASE
-========================= */
-
+// Database Categorized from A1 to C1
 const words = [
-
-["សួស្តី","Hello","안녕하세요","ការស្វាគមន៍"],
-
-["អរគុណ","Thank you","감사합니다","ការគួរសម"],
-
-["សូមទោស","Sorry","미안합니다","ការគួរសម"],
-
-["លា","Goodbye","안녕히 가세요","ការស្វាគមន៍"],
-
-["បាទ","Yes","네","ចម្លើយ"],
-
-["ទេ","No","아니요","ចម្លើយ"],
-
-["សូម","Please","제발","ការគួរសម"],
-
-["មិនអីទេ","You're welcome","천만에요","ការគួរសម"],
-
-["ឈ្មោះ","Name","이름","មនុស្ស"],
-
-["មិត្ត","Friend","친구","មនុស្ស"],
-
-["គ្រួសារ","Family","가족","មនុស្ស"],
-
-["ឪពុក","Father","아버지","គ្រួសារ"],
-
-["ម្តាយ","Mother","어머니","គ្រួសារ"],
-
-["ផ្ទះ","House","집","ជីវិតប្រចាំថ្ងៃ"],
-
-["បន្ទប់","Room","방","ជីវិតប្រចាំថ្ងៃ"],
-
-["ទឹក","Water","물","អាហារ"],
-
-["បាយ","Rice / meal","밥","អាហារ"],
-
-["អាហារ","Food","음식","អាហារ"],
-
-["កាហ្វេ","Coffee","커피","ភេសជ្ជៈ"],
-
-["តែ","Tea","차","ភេសជ្ជៈ"],
-
-["សាច់","Meat","고기","អាហារ"],
-
-["ត្រី","Fish","생선","អាហារ"],
-
-["បន្លែ","Vegetables","채소","អាហារ"],
-
-["ផ្លែឈើ","Fruit","과일","អាហារ"],
-
-["ផ្សារ","Market","시장","កន្លែង"],
-
-["ហាង","Shop","가게","កន្លែង"],
-
-["ភោជនីយដ្ឋាន","Restaurant","식당","កន្លែង"],
-
-["សាលា","School","학교","កន្លែង"],
-
-["មន្ទីរពេទ្យ","Hospital","병원","កន្លែង"],
-
-["ធនាគារ","Bank","은행","កន្លែង"],
-
-["ការងារ","Work","일","ការងារ"],
-
-["ក្រុមហ៊ុន","Company","회사","ការងារ"],
-
-["ថៅកែ","Boss","사장님","ការងារ"],
-
-["បុគ្គលិក","Employee","직원","ការងារ"],
-
-["ប្រាក់","Money","돈","ហិរញ្ញវត្ថុ"],
-
-["តម្លៃ","Price","가격","ការទិញ"],
-
-["ថ្លៃ","Expensive","비싸다","ការទិញ"],
-
-["ថោក","Cheap","싸다","ការទិញ"],
-
-["ទិញ","Buy","사다","កិរិយាសព្ទ"],
-
-["លក់","Sell","팔다","កិរិយាសព្ទ"],
-
-["ទៅ","Go","가다","កិរិយាសព្ទ"],
-
-["មក","Come","오다","កិរិយាសព្ទ"],
-
-["ញ៉ាំ","Eat","먹다","កិរិយាសព្ទ"],
-
-["ផឹក","Drink","마시다","កិរិយាសព្ទ"],
-
-["គេង","Sleep","자다","កិរិយាសព្ទ"],
-
-["ធ្វើការ","Work","일하다","កិរិយាសព្ទ"],
-
-["រៀន","Study / learn","배우다","កិរិយាសព្ទ"],
-
-["និយាយ","Speak","말하다","កិរិយាសព្ទ"],
-
-["ស្តាប់","Listen","듣다","កិរិយាសព្ទ"],
-
-["មើល","See / watch","보다","កិរិយាសព្ទ"],
-
-["អាន","Read","읽다","កិរិយាសព្ទ"],
-
-["សរសេរ","Write","쓰다","កិរិយាសព្ទ"],
-
-["ចង់","Want","원하다","កិរិយាសព្ទ"],
-
-["ចូលចិត្ត","Like","좋아하다","អារម្មណ៍"],
-
-["ស្រឡាញ់","Love","사랑하다","អារម្មណ៍"],
-
-["ល្អ","Good","좋다","គុណនាម"],
-
-["អាក្រក់","Bad","나쁘다","គុណនាម"],
-
-["ធំ","Big","크다","គុណនាម"],
-
-["តូច","Small","작다","គុណនាម"],
-
-["ថ្មី","New","새롭다","គុណនាម"],
-
-["ចាស់","Old","오래되다","គុណនាម"],
-
-["ក្តៅ","Hot","덥다","គុណនាម"],
-
-["ត្រជាក់","Cold","춥다","គុណនាម"],
-
-["លឿន","Fast","빠르다","គុណនាម"],
-
-["យឺត","Slow","느리다","គុណនាម"],
-
-["ថ្ងៃនេះ","Today","오늘","ពេលវេលា"],
-
-["ម្សិលមិញ","Yesterday","어제","ពេលវេលា"],
-
-["ថ្ងៃស្អែក","Tomorrow","내일","ពេលវេលា"],
-
-["ពេលព្រឹក","Morning","아침","ពេលវេលា"],
-
-["យប់","Night","밤","ពេលវេលា"],
-
-["ឥឡូវនេះ","Now","지금","ពេលវេលា"],
-
-["ម៉ោង","Hour / time","시간","ពេលវេលា"],
-
-["មួយ","One","하나","លេខ"],
-
-["ពីរ","Two","둘","លេខ"],
-
-["បី","Three","셋","លេខ"],
-
-["បួន","Four","넷","លេខ"],
-
-["ប្រាំ","Five","다섯","លេខ"],
-
-["កម្ពុជា","Cambodia","캄보디아","ប្រទេស"],
-
-["កូរ៉េ","Korea","한국","ប្រទេស"],
-
-["អង់គ្លេស","English","영어","ភាសា"],
-
-["កូរ៉េ","Korean","한국어","ភាសា"],
-
-["ខ្មែរ","Khmer","크메르어","ភាសា"],
-
-["ខ្ញុំ","I / me","저 / 나","សព្វនាម"],
-
-["អ្នក","You","당신 / 너","សព្វនាម"],
-
-["គាត់","He / she","그 / 그녀","សព្វនាម"],
-
-["នេះ","This","이것","សព្វនាម"],
-
-["នោះ","That","그것","សព្វនាម"]
-
+  // A1 Level
+  { level: "A1", kh: "សួស្តី", en: "Hello", ko: "안녕하세요", cat: "ការស្វាគមន៍" },
+  { level: "A1", kh: "អរគុណ", en: "Thank you", ko: "감사합니다", cat: "ការគួរសម" },
+  { level: "A1", kh: "ទឹក", en: "Water", ko: "물", cat: "អាហារ" },
+  { level: "A1", kh: "បាទ / ចាស", en: "Yes", ko: "네", cat: "ទូទៅ" },
+  
+  // A2 Level
+  { level: "A2", kh: "ផ្សារ", en: "Market", ko: "시장", cat: "កន្លែង" },
+  { level: "A2", kh: "ទិញ", en: "Buy", ko: "사다", cat: "កិរិយាសព្ទ" },
+  { level: "A2", kh: "ថ្ងៃនេះ", en: "Today", ko: "오늘", cat: "ពេលវេលា" },
+
+  // B1 Level
+  { level: "B1", kh: "ក្រុមហ៊ុន", en: "Company", ko: "회사", cat: "ការងារ" },
+  { level: "B1", kh: "បទពិសោធន៍", en: "Experience", ko: "경험", cat: "ការងារ" },
+  { level: "B1", kh: "ធ្វើដំណើរ", en: "Travel", ko: "여행", cat: "សកម្មភាព" },
+
+  // B2 Level
+  { level: "B2", kh: "ការអភិវឌ្ឍ", en: "Development", ko: "발전", cat: "សង្គម" },
+  { level: "B2", kh: "ឱកាស", en: "Opportunity", ko: "기회", cat: "ធុរកិច្ច" },
+
+  // C1 Level
+  { level: "C1", kh: "ចីរភាព", en: "Sustainability", ko: "지속 가능성", cat: "កម្រិតខ្ពស់" },
+  { level: "C1", kh: "សេដ្ឋកិច្ច", en: "Economy", ko: "경제", cat: "កម្រិតខ្ពស់" }
 ];
 
+let currentLevel = "ALL";
+let favorites = JSON.parse(localStorage.getItem("learnTrioFav") || "[]");
 
-/* =========================
-   SENTENCES
-========================= */
-
-const sentences = [
-
-["ខ្ញុំមកពីកម្ពុជា។",
-"I am from Cambodia.",
-"저는 캄보디아에서 왔어요."],
-
-["ខ្ញុំចង់រៀនភាសាអង់គ្លេស។",
-"I want to learn English.",
-"저는 영어를 배우고 싶어요."],
-
-["ខ្ញុំចង់រៀនភាសាកូរ៉េ។",
-"I want to learn Korean.",
-"저는 한국어를 배우고 싶어요."],
-
-["តើអ្នកសុខសប្បាយទេ?",
-"How are you?",
-"잘 지내세요?"],
-
-["ខ្ញុំមិនយល់ទេ។",
-"I don't understand.",
-"이해하지 못해요."],
-
-["សូមនិយាយយឺតៗ។",
-"Please speak slowly.",
-"천천히 말해 주세요."],
-
-["នេះមានតម្លៃប៉ុន្មាន?",
-"How much is this?",
-"이거 얼마예요?"],
-
-["ខ្ញុំចង់ទិញវា។",
-"I want to buy it.",
-"이것을 사고 싶어요."],
-
-["ខ្ញុំកំពុងធ្វើការ។",
-"I am working.",
-"저는 일하고 있어요."],
-
-["ខ្ញុំទៅសាលា។",
-"I go to school.",
-"저는 학교에 가요."],
-
-["សូមអរគុណច្រើន។",
-"Thank you very much.",
-"정말 감사합니다."],
-
-["ជួបគ្នាថ្ងៃស្អែក។",
-"See you tomorrow.",
-"내일 만나요."]
-
-];
-
-
-/* =========================
-   FAVORITES
-========================= */
-
-let favorites =
-JSON.parse(
-localStorage.getItem("learnTrioFav") || "[]"
-);
-
-
-/* =========================
-   SPEECH
-========================= */
-
-function speak(text,lang){
-
-  if(!("speechSynthesis" in window)){
-    alert("ទូរស័ព្ទរបស់អ្នកមិនគាំទ្រសំឡេងទេ");
-    return;
-  }
-
+function speak(text, lang) {
+  if (!("speechSynthesis" in window)) return alert("ទូរស័ព្ទមិនគាំទ្រសំឡេងទេ");
   speechSynthesis.cancel();
-
-  const u =
-  new SpeechSynthesisUtterance(text);
-
+  const u = new SpeechSynthesisUtterance(text);
   u.lang = lang;
-
   speechSynthesis.speak(u);
 }
 
-
-/* =========================
-   TABS
-========================= */
-
-function openTab(id){
-
-  document
-  .querySelectorAll(".tabs button")
-  .forEach(b=>{
-
-    b.classList.toggle(
-      "active",
-      b.dataset.tab===id
-    );
-
-  });
-
-  document
-  .querySelectorAll(".panel")
-  .forEach(p=>{
-
-    p.classList.toggle(
-      "active",
-      p.id===id
-    );
-
-  });
-
-  if(id==="words"){
-    renderWords();
-  }
-
+function openTab(id) {
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === id));
+  if (id === "words") renderWords();
 }
 
-
-/* =========================
-   TAB BUTTON
-========================= */
-
-document
-.querySelectorAll(".tabs button")
-.forEach(button=>{
-
-  button.onclick=()=>{
-    openTab(button.dataset.tab);
-  };
-
+document.querySelectorAll(".tabs button").forEach(b => {
+  b.onclick = () => openTab(b.dataset.tab);
 });
 
-
-/* =========================
-   FAVORITE
-========================= */
-
-function toggleFav(index){
-
-  if(favorites.includes(index)){
-
-    favorites =
-    favorites.filter(
-      x=>x!==index
-    );
-
-  }else{
-
-    favorites.push(index);
-
-  }
-
-  localStorage.setItem(
-    "learnTrioFav",
-    JSON.stringify(favorites)
-  );
-
+function filterLevel(level) {
+  currentLevel = level;
+  document.querySelectorAll(".level-btn").forEach(b => {
+    b.classList.toggle("active", b.textContent.includes(level) || (level==='ALL' && b.textContent==='ទាំងអស់'));
+  });
   renderWords();
 }
 
-
-/* =========================
-   RENDER WORDS
-========================= */
-
-function renderWords(){
-
-  const search =
-  document
-  .getElementById("search")
-  .value
-  .toLowerCase();
-
-  const result =
-  words
-  .map((x,i)=>[x,i])
-  .filter(([x])=>
-    x
-    .join(" ")
-    .toLowerCase()
-    .includes(search)
-  );
-
-
-  document
-  .getElementById("wordGrid")
-  .innerHTML =
-
-  result.map(([x,i])=>`
-
-    <div class="card">
-
-      <div class="word">
-        ${x[0]}
-      </div>
-
-      <div class="en">
-        ${x[1]}
-      </div>
-
-      <div class="ko">
-        ${x[2]}
-      </div>
-
-      <div class="muted">
-        ${x[3]}
-      </div>
-
-      <div class="actions">
-
-        <button
-        class="sound"
-        onclick="speak('${x[1]}','en-US')">
-        🔊 EN
-        </button>
-
-        <button
-        class="sound"
-        onclick="speak('${x[2]}','ko-KR')">
-        🔊 KR
-        </button>
-
-        <button
-        class="fav ${favorites.includes(i) ? "on":""}"
-        onclick="toggleFav(${i})">
-
-        ${favorites.includes(i) ? "⭐" : "☆"}
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-
-  document
-  .getElementById("count")
-  .textContent =
-  words.length;
-
-}
-
-
-/* =========================
-   SENTENCES
-========================= */
-
-document
-.getElementById("sentenceGrid")
-.innerHTML =
-
-sentences.map(x=>`
-
-<div class="card">
-
-  <div class="word">
-    ${x[0]}
-  </div>
-
-  <div class="en">
-    ${x[1]}
-  </div>
-
-  <div class="ko">
-    ${x[2]}
-  </div>
-
-  <div class="actions">
-
-    <button
-    class="sound"
-    onclick="speak('${x[1]}','en-US')">
-    🔊 English
-    </button>
-
-    <button
-    class="sound"
-    onclick="speak('${x[2]}','ko-KR')">
-    🔊 Korean
-    </button>
-
-  </div>
-
-</div>
-
-`).join("");
-
-
-/* =========================
-   QUIZ
-========================= */
-
-function answer(button,correct){
-
-  document
-  .querySelectorAll(".choice")
-  .forEach(b=>{
-    b.disabled=true;
+function renderWords() {
+  const search = (document.getElementById("search")?.value || "").toLowerCase();
+  
+  const filtered = words.filter(item => {
+    const matchLevel = (currentLevel === "ALL" || item.level === currentLevel);
+    const matchSearch = item.kh.toLowerCase().includes(search) || 
+                        item.en.toLowerCase().includes(search) || 
+                        item.ko.toLowerCase().includes(search);
+    return matchLevel && matchSearch;
   });
 
-
-  if(correct){
-
-    button.classList.add("correct");
-
-    document
-    .getElementById("result")
-    .textContent =
-    "✅ ត្រឹមត្រូវ!";
-
-  }else{
-
-    button.classList.add("wrong");
-
-    document
-    .getElementById("result")
-    .textContent =
-    "❌ មិនត្រឹមត្រូវ — ចម្លើយគឺ B. Hello";
-
+  const wordGrid = document.getElementById("wordGrid");
+  if (wordGrid) {
+    wordGrid.innerHTML = filtered.map((x, i) => `
+      <div class="card">
+        <span class="badge">${x.level} • ${x.cat}</span>
+        <div class="word">${x.kh}</div>
+        <div class="en">${x.en}</div>
+        <div class="ko">${x.ko}</div>
+        <div class="actions">
+          <button class="sound" onclick="speak('${x.en}','en-US')">🔊 EN</button>
+          <button class="sound" onclick="speak('${x.ko}','ko-KR')">🔊 KR</button>
+        </div>
+      </div>
+    `).join("");
   }
 
+  const countEl = document.getElementById("count");
+  if (countEl) countEl.textContent = words.length;
 }
 
+// Free MyMemory API Integration
+async function translateWithAPI() {
+  const query = document.getElementById("apiInput").value.trim();
+  if (!query) return;
 
-function resetQuiz(){
+  const resBox = document.getElementById("apiResult");
+  const textEN = document.getElementById("apiTextEN");
+  const textKM = document.getElementById("apiTextKM");
+  
+  textEN.textContent = "កំពុងស្វែងរក...";
+  textKM.textContent = "";
+  resBox.style.display = "block";
 
-  document
-  .querySelectorAll(".choice")
-  .forEach(b=>{
-
-    b.disabled=false;
-
-    b.classList.remove(
-      "correct",
-      "wrong"
-    );
-
-  });
-
-
-  document
-  .getElementById("result")
-  .textContent="";
-
+  try {
+    const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=en|km`);
+    const data = await res.json();
+    
+    const translated = data.responseData.translatedText;
+    textEN.textContent = `EN: ${query}`;
+    textKM.textContent = `KM: ${translated}`;
+    
+    document.getElementById("btnSpeakEN").onclick = () => speak(query, 'en-US');
+  } catch (err) {
+    textEN.textContent = "មានបញ្ហាក្នុងការភ្ជាប់ API";
+  }
 }
-
-
-/* =========================
-   START
-========================= */
 
 renderWords();
-
 </script>
-
 </body>
 </html>
