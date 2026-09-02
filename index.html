@@ -1,222 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="km">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>សៀវភៅបកប្រែ 3 ភាសា</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6657e8">
+
+<title>Learn Trio | Khmer English Korean</title>
 
 <style>
+:root{
+  --p:#6657e8;
+  --p2:#9b62ff;
+  --bg:#f5f6fb;
+  --card:#fff;
+  --text:#172033;
+  --muted:#687286;
+  --line:#e5e7ef;
+  --good:#18a66a;
+}
+
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,"Noto Sans Khmer",sans-serif;
 }
 
 body{
-  background:linear-gradient(135deg,#eef5ff,#f9fbff);
-  min-height:100vh;
-  color:#222;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,"Noto Sans Khmer",
+  "Noto Sans",sans-serif;
 }
 
-.container{
-  max-width:750px;
+header{
+  background:linear-gradient(135deg,#5144d8,#a05cff);
+  color:white;
+  padding:18px 16px 28px;
+  border-radius:0 0 30px 30px;
+}
+
+.wrap{
+  max-width:1050px;
   margin:auto;
-  padding:15px;
 }
 
-.header{
-  text-align:center;
-  padding:25px 10px;
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
 }
 
-.header h1{
-  font-size:32px;
-  margin-bottom:8px;
+.brand{
+  font-size:23px;
+  font-weight:900;
 }
 
-.header p{
-  color:#666;
-  font-size:16px;
+.hero{
+  padding:25px 0 15px;
+}
+
+.hero h1{
+  margin:0 0 7px;
+  font-size:30px;
+}
+
+.hero p{
+  margin:0;
+  opacity:.92;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+
+.stat{
+  background:#ffffff20;
+  border:1px solid #ffffff35;
+  border-radius:17px;
+  padding:12px;
+}
+
+.stat b{
+  font-size:21px;
+  display:block;
+}
+
+main{
+  padding:18px 14px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding-bottom:10px;
+  scrollbar-width:none;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+  border:0;
+}
+
+.tabs button,
+.btn{
+  background:#fff;
+  color:var(--text);
+  padding:11px 14px;
+  border-radius:14px;
+  font-weight:800;
+  white-space:nowrap;
+  box-shadow:0 3px 12px #00000008;
+}
+
+.tabs button.active,
+.btn.primary{
+  background:var(--p);
+  color:#fff;
+}
+
+.panel{
+  display:none;
+}
+
+.panel.active{
+  display:block;
 }
 
 .card{
-  background:white;
-  border-radius:22px;
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:21px;
+  padding:17px;
+  box-shadow:0 5px 20px #00000008;
 }
 
-.menu{
+.grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.menu button{
-  border:0;
-  border-radius:14px;
-  padding:15px 8px;
-  background:#f0f4fa;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.menu button.active{
-  background:#1877f2;
-  color:white;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
 .search{
   width:100%;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:17px;
-  margin-bottom:15px;
-}
-
-.lesson{
-  border:1px solid #eee;
-  border-radius:18px;
-  overflow:hidden;
-  margin-bottom:18px;
-  background:#fff;
-}
-
-.picture{
-  height:150px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:75px;
-  background:linear-gradient(135deg,#dcecff,#f5f9ff);
-}
-
-.lesson-content{
-  padding:18px;
-}
-
-.lesson h2{
-  margin-bottom:15px;
-  font-size:22px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  font-size:16px;
+  margin:8px 0 15px;
+  outline:none;
 }
 
 .word{
-  padding:12px;
-  background:#f8f9fb;
-  border-radius:12px;
-  margin-bottom:10px;
-}
-
-.kh{
-  font-size:20px;
-  font-weight:bold;
+  font-size:21px;
+  font-weight:900;
 }
 
 .en{
-  color:#1769aa;
+  color:var(--p);
+  font-weight:800;
   margin-top:4px;
 }
 
 .ko{
-  color:#d35454;
+  font-size:19px;
   margin-top:4px;
-  font-size:19px;
 }
 
-.pron{
-  color:#777;
-  font-size:14px;
-  margin-top:3px;
+.muted{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.speak{
-  margin-top:8px;
-  border:0;
-  border-radius:8px;
-  padding:7px 12px;
-  background:#e8f5e9;
-  cursor:pointer;
-}
-
-.translator-title{
-  font-size:23px;
-  margin-bottom:15px;
-}
-
-.languages{
+.actions{
   display:flex;
-  gap:10px;
-  margin-bottom:12px;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:12px;
 }
 
-select{
-  flex:1;
+.sound,
+.fav{
+  padding:8px 10px;
+  border-radius:12px;
+  background:#f0efff;
+  color:var(--p);
+  font-weight:800;
+}
+
+.fav.on{
+  background:#fff0a8;
+  color:#8b6500;
+}
+
+.lesson{
+  background:linear-gradient(135deg,#fff,#f0edff);
+}
+
+.progress{
+  height:10px;
+  background:#e7e8f0;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.bar{
+  height:100%;
+  width:35%;
+  background:linear-gradient(90deg,var(--p),var(--p2));
+}
+
+.bubble{
+  background:#f0f1f6;
+  border-radius:17px;
+  padding:12px;
+  margin:8px 0;
+  max-width:88%;
+}
+
+.bubble.me{
+  margin-left:auto;
+  background:#e9e5ff;
+}
+
+.choice{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#fff;
+  border:1px solid var(--line);
   padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:16px;
-  background:white;
+  border-radius:14px;
+  margin:8px 0;
+  font-weight:700;
 }
 
-textarea{
-  width:100%;
-  height:130px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:15px;
-  font-size:18px;
-  resize:vertical;
-  margin-bottom:12px;
+.choice.correct{
+  border-color:var(--good);
+  background:#e9fff4;
 }
 
-.main-btn{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:#1877f2;
-  color:white;
-  font-size:18px;
-  cursor:pointer;
+.choice.wrong{
+  border-color:#e55;
+  background:#fff0f0;
 }
 
-.result{
-  margin-top:15px;
-  min-height:90px;
-  padding:15px;
-  border-radius:12px;
-  background:#f7f7f7;
-  font-size:19px;
-  white-space:pre-wrap;
-}
-
-.copy{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:10px;
-  margin-top:10px;
-  background:#333;
-  color:white;
-  font-size:16px;
-}
-
-.empty{
+footer{
   text-align:center;
-  color:#777;
-  padding:30px;
+  padding:30px 10px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-@media(max-width:500px){
-  .languages{
-    flex-direction:column;
+@media(max-width:760px){
+
+  .grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .header h1{
-    font-size:27px;
+  .hero h1{
+    font-size:25px;
+  }
+}
+
+@media(max-width:480px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    border-radius:17px;
+  }
+
+  .top{
+    align-items:flex-start;
   }
 }
 </style>
@@ -224,516 +286,944 @@ textarea{
 
 <body>
 
-<div class="container">
+<header>
 
-  <div class="header">
-    <h1>📖 សៀវភៅបកប្រែ</h1>
-    <p>🇰🇭 ខ្មែរ • 🇬🇧 English • 🇰🇷 한국어</p>
-  </div>
+<div class="wrap">
 
-  <!-- MENU -->
-  <div class="card">
-    <div class="menu">
-      <button class="active" onclick="showPage('home',this)">
-        🏠 មេរៀន
-      </button>
+<div class="top">
 
-      <button onclick="showPage('conversation',this)">
-        💬 សន្ទនា
-      </button>
+<div class="brand">
+🌏 Learn Trio
+</div>
 
-      <button onclick="showPage('translator',this)">
-        🌐 បកប្រែ
-      </button>
-
-      <button onclick="showPage('daily',this)">
-        📚 ពាក្យប្រចាំថ្ងៃ
-      </button>
-    </div>
-  </div>
-
-  <!-- HOME -->
-  <div id="home" class="page">
-
-    <div class="card">
-      <input
-        class="search"
-        id="search"
-        placeholder="🔎 ស្វែងរកពាក្យ ឬប្រយោគ..."
-        oninput="searchLessons()"
-      >
-
-      <div id="lessons">
-
-        <!-- LESSON 1 -->
-        <div class="lesson">
-          <div class="picture">👋</div>
-
-          <div class="lesson-content">
-            <h2>👋 ការសួរសុខទុក្ខ</h2>
-
-            <div class="word">
-              <div class="kh">សួស្តី</div>
-              <div class="en">🇬🇧 Hello</div>
-              <div class="ko">🇰🇷 안녕하세요</div>
-              <div class="pron">អាន៖ Annyeonghaseyo</div>
-              <button class="speak" onclick="speak('안녕하세요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">តើអ្នកសុខសប្បាយទេ?</div>
-              <div class="en">🇬🇧 How are you?</div>
-              <div class="ko">🇰🇷 잘 지내세요?</div>
-              <div class="pron">អាន៖ Jal jinaeseyo?</div>
-              <button class="speak" onclick="speak('잘 지내세요?','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">ខ្ញុំសុខសប្បាយ</div>
-              <div class="en">🇬🇧 I am fine.</div>
-              <div class="ko">🇰🇷 잘 지내요.</div>
-              <div class="pron">អាន៖ Jal jinaeyo.</div>
-              <button class="speak" onclick="speak('잘 지내요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- LESSON 2 -->
-        <div class="lesson">
-          <div class="picture">🍚</div>
-
-          <div class="lesson-content">
-            <h2>🍚 អាហារ</h2>
-
-            <div class="word">
-              <div class="kh">ខ្ញុំឃ្លាន</div>
-              <div class="en">🇬🇧 I am hungry.</div>
-              <div class="ko">🇰🇷 배고파요.</div>
-              <div class="pron">អាន៖ Baegopayo.</div>
-              <button class="speak" onclick="speak('배고파요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">ខ្ញុំចង់ញ៉ាំបាយ</div>
-              <div class="en">🇬🇧 I want to eat rice.</div>
-              <div class="ko">🇰🇷 밥 먹고 싶어요.</div>
-              <div class="pron">អាន៖ Bap meokgo sipeoyo.</div>
-              <button class="speak" onclick="speak('밥 먹고 싶어요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">ឆ្ងាញ់ណាស់</div>
-              <div class="en">🇬🇧 Very delicious.</div>
-              <div class="ko">🇰🇷 정말 맛있어요.</div>
-              <div class="pron">អាន៖ Jeongmal masisseoyo.</div>
-              <button class="speak" onclick="speak('정말 맛있어요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- LESSON 3 -->
-        <div class="lesson">
-          <div class="picture">💼</div>
-
-          <div class="lesson-content">
-            <h2>💼 ការងារ</h2>
-
-            <div class="word">
-              <div class="kh">ខ្ញុំទៅធ្វើការ</div>
-              <div class="en">🇬🇧 I am going to work.</div>
-              <div class="ko">🇰🇷 일하러 가요.</div>
-              <div class="pron">អាន៖ Ilhareo gayo.</div>
-              <button class="speak" onclick="speak('일하러 가요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">ការងារលំបាក</div>
-              <div class="en">🇬🇧 The work is difficult.</div>
-              <div class="ko">🇰🇷 일이 어려워요.</div>
-              <div class="pron">អាន៖ Iri eoryeowoyo.</div>
-              <button class="speak" onclick="speak('일이 어려워요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- LESSON 4 -->
-        <div class="lesson">
-          <div class="picture">🛒</div>
-
-          <div class="lesson-content">
-            <h2>🛒 ទិញទំនិញ</h2>
-
-            <div class="word">
-              <div class="kh">តើនេះថ្លៃប៉ុន្មាន?</div>
-              <div class="en">🇬🇧 How much is this?</div>
-              <div class="ko">🇰🇷 이거 얼마예요?</div>
-              <div class="pron">អាន៖ Igeo eolmayeyo?</div>
-              <button class="speak" onclick="speak('이거 얼마예요?','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-            <div class="word">
-              <div class="kh">ថ្លៃពេក</div>
-              <div class="en">🇬🇧 Too expensive.</div>
-              <div class="ko">🇰🇷 너무 비싸요.</div>
-              <div class="pron">អាន៖ Neomu bissayo.</div>
-              <button class="speak" onclick="speak('너무 비싸요','ko-KR')">
-                🔊 ស្តាប់
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- CONVERSATION -->
-  <div id="conversation" class="page" style="display:none">
-
-    <div class="card">
-      <h2>💬 សន្ទនាប្រចាំថ្ងៃ</h2>
-      <br>
-
-      <div class="word">
-        <div class="kh">A: សួស្តី! តើអ្នកសុខសប្បាយទេ?</div>
-        <div class="en">A: Hello! How are you?</div>
-        <div class="ko">A: 안녕하세요! 잘 지내세요?</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">B: ខ្ញុំសុខសប្បាយ។ អរគុណ។</div>
-        <div class="en">B: I am fine. Thank you.</div>
-        <div class="ko">B: 잘 지내요. 감사합니다.</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">A: តើអ្នកទៅណា?</div>
-        <div class="en">A: Where are you going?</div>
-        <div class="ko">A: 어디 가세요?</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">B: ខ្ញុំទៅធ្វើការ។</div>
-        <div class="en">B: I am going to work.</div>
-        <div class="ko">B: 일하러 가요.</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">A: ជួបគ្នាពេលក្រោយ!</div>
-        <div class="en">A: See you later!</div>
-        <div class="ko">A: 나중에 만나요!</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- DAILY WORDS -->
-  <div id="daily" class="page" style="display:none">
-
-    <div class="card">
-      <h2>📚 ពាក្យប្រើប្រាស់ប្រចាំថ្ងៃ</h2>
-      <br>
-
-      <div class="word">
-        <div class="kh">បាទ / ចាស</div>
-        <div class="en">Yes</div>
-        <div class="ko">네</div>
-        <div class="pron">Ne</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">ទេ</div>
-        <div class="en">No</div>
-        <div class="ko">아니요</div>
-        <div class="pron">Aniyo</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">អរគុណ</div>
-        <div class="en">Thank you</div>
-        <div class="ko">감사합니다</div>
-        <div class="pron">Gamsahamnida</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">សុំទោស</div>
-        <div class="en">Sorry / Excuse me</div>
-        <div class="ko">죄송합니다</div>
-        <div class="pron">Joesonghamnida</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">មិនយល់</div>
-        <div class="en">I don't understand.</div>
-        <div class="ko">이해가 안 돼요.</div>
-        <div class="pron">Ihaega an dwaeyo.</div>
-      </div>
-
-      <div class="word">
-        <div class="kh">ជួយខ្ញុំផង</div>
-        <div class="en">Please help me.</div>
-        <div class="ko">도와주세요.</div>
-        <div class="pron">Dowajuseyo.</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TRANSLATOR -->
-  <div id="translator" class="page" style="display:none">
-
-    <div class="card">
-
-      <div class="translator-title">
-        🌐 បកប្រែភាសា
-      </div>
-
-      <div class="languages">
-
-        <select id="from">
-          <option value="km">🇰🇭 ខ្មែរ</option>
-          <option value="en">🇬🇧 English</option>
-          <option value="ko">🇰🇷 한국어</option>
-        </select>
-
-        <select id="to">
-          <option value="en">🇬🇧 English</option>
-          <option value="km">🇰🇭 ខ្មែរ</option>
-          <option value="ko">🇰🇷 한국어</option>
-        </select>
-
-      </div>
-
-      <textarea
-        id="inputText"
-        placeholder="សរសេរអ្វីដែលអ្នកចង់បកប្រែ..."
-      ></textarea>
-
-      <button class="main-btn" onclick="translateText()">
-        🔵 បកប្រែ
-      </button>
-
-      <div class="result" id="result">
-        លទ្ធផលបកប្រែនឹងបង្ហាញនៅទីនេះ...
-      </div>
-
-      <button class="copy" onclick="copyText()">
-        📋 ចម្លងការបកប្រែ
-      </button>
-
-      <button
-        class="copy"
-        style="background:#087f23"
-        onclick="speakTranslation()"
-      >
-        🔊 អានសំឡេង
-      </button>
-
-    </div>
-  </div>
+<div>
+🇰🇭 🇬🇧 🇰🇷
+</div>
 
 </div>
 
 
+<div class="hero">
+
+<h1>
+រៀនភាសា ងាយៗ រៀនរាល់ថ្ងៃ 🚀
+</h1>
+
+<p>
+រៀន Khmer • English • Korean តាមរយៈពាក្យ ប្រយោគ សន្ទនា និង Quiz
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<b id="count">0</b>
+ពាក្យ
+</div>
+
+<div class="stat">
+<b>12</b>
+ប្រយោគ
+</div>
+
+<div class="stat">
+<b>35%</b>
+Progress
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="wrap">
+
+
+<div class="tabs">
+
+<button class="active" data-tab="home">
+🏠 ដើម
+</button>
+
+<button data-tab="words">
+📚 ពាក្យ
+</button>
+
+<button data-tab="sentences">
+💬 ប្រយោគ
+</button>
+
+<button data-tab="dialogues">
+🗣️ សន្ទនា
+</button>
+
+<button data-tab="grammar">
+📖 Grammar
+</button>
+
+<button data-tab="quiz">
+🎯 Quiz
+</button>
+
+</div>
+
+
+<!-- HOME -->
+
+<section id="home" class="panel active">
+
+<div class="card lesson">
+
+<h2>
+🔥 មេរៀនថ្ងៃនេះ
+</h2>
+
+<p>
+រៀនពាក្យថ្មីៗ ហើយសាកល្បងចំណេះដឹងរបស់អ្នក។
+</p>
+
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="openTab('words')">
+ចាប់ផ្តើមរៀន →
+</button>
+
+<button
+class="btn"
+onclick="openTab('quiz')">
+🎯 Quiz
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="grid"
+style="margin-top:12px">
+
+<div class="card">
+
+<h3>
+🇬🇧 English
+</h3>
+
+<p>
+ពាក្យប្រើប្រចាំថ្ងៃ និងការសន្ទនា។
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🇰🇷 한국어
+</h3>
+
+<p>
+រៀនពាក្យ និងស្តាប់សំឡេងកូរ៉េ។
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+⭐ Favorite
+</h3>
+
+<p>
+រក្សាទុកពាក្យដែលអ្នកចង់រៀនឡើងវិញ។
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WORDS -->
+
+<section id="words" class="panel">
+
+<h2>
+📚 ពាក្យប្រចាំថ្ងៃ
+</h2>
+
+<input
+id="search"
+class="search"
+placeholder="🔎 ស្វែងរក Khmer / English / Korean..."
+oninput="renderWords()"
+>
+
+<div
+class="grid"
+id="wordGrid">
+</div>
+
+</section>
+
+
+<!-- SENTENCES -->
+
+<section id="sentences" class="panel">
+
+<h2>
+💬 ប្រយោគប្រចាំថ្ងៃ
+</h2>
+
+<div
+class="grid"
+id="sentenceGrid">
+</div>
+
+</section>
+
+
+<!-- DIALOGUES -->
+
+<section id="dialogues" class="panel">
+
+<h2>
+🗣️ សន្ទនា
+</h2>
+
+<div class="card">
+
+<h3>
+👋 ជួបមិត្តថ្មី
+</h3>
+
+<div class="bubble">
+🇰🇭 សួស្តី! តើអ្នកសុខសប្បាយទេ?
+</div>
+
+<div class="bubble me">
+🇬🇧 Hello! How are you?
+</div>
+
+<div class="bubble">
+🇰🇷 안녕하세요! 잘 지내세요?
+</div>
+
+<div class="actions">
+
+<button
+class="sound"
+onclick="speak('Hello! How are you?','en-US')">
+🔊 English
+</button>
+
+<button
+class="sound"
+onclick="speak('안녕하세요! 잘 지내세요?','ko-KR')">
+🔊 Korean
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GRAMMAR -->
+
+<section id="grammar" class="panel">
+
+<h2>
+📖 វេយ្យាករណ៍
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+🇬🇧 I am...
+</h3>
+
+<p>
+<b>I am happy.</b>
+</p>
+
+<p class="muted">
+ខ្ញុំសប្បាយចិត្ត។
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🇰🇷 저는...
+</h3>
+
+<p>
+<b>저는 학생이에요.</b>
+</p>
+
+<p class="muted">
+ខ្ញុំជាសិស្ស។
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🇰🇷 은 / 는
+</h3>
+
+<p>
+ប្រើសម្រាប់បង្ហាញប្រធានបទក្នុងប្រយោគ។
+</p>
+
+<p>
+<b>
+저는 캄보디아 사람입니다.
+</b>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="panel">
+
+<h2>
+🎯 Quiz
+</h2>
+
+<div class="card">
+
+<h3>
+“សួស្តី” ជាភាសាអង់គ្លេសថា?
+</h3>
+
+<div id="choices">
+
+<button
+class="choice"
+onclick="answer(this,false)">
+A. Goodbye
+</button>
+
+<button
+class="choice"
+onclick="answer(this,true)">
+B. Hello
+</button>
+
+<button
+class="choice"
+onclick="answer(this,false)">
+C. Thank you
+</button>
+
+</div>
+
+<h3 id="result">
+</h3>
+
+<button
+class="btn primary"
+onclick="resetQuiz()">
+🔄 សាកម្តងទៀត
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+🌏 Learn Trio
+
+<br>
+
+Khmer 🇰🇭 • English 🇬🇧 • Korean 🇰🇷
+
+<br>
+
+រៀនរាល់ថ្ងៃ បន្តិចម្តងៗ ❤️
+
+</footer>
+
+
 <script>
 
-function showPage(page,button){
 
-  document.querySelectorAll(".page").forEach(function(p){
-    p.style.display="none";
-  });
+/* =========================
+   WORD DATABASE
+========================= */
 
-  document.getElementById(page).style.display="block";
+const words = [
 
-  document.querySelectorAll(".menu button").forEach(function(b){
-    b.classList.remove("active");
-  });
+["សួស្តី","Hello","안녕하세요","ការស្វាគមន៍"],
 
-  button.classList.add("active");
+["អរគុណ","Thank you","감사합니다","ការគួរសម"],
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
+["សូមទោស","Sorry","미안합니다","ការគួរសម"],
 
+["លា","Goodbye","안녕히 가세요","ការស្វាគមន៍"],
+
+["បាទ","Yes","네","ចម្លើយ"],
+
+["ទេ","No","아니요","ចម្លើយ"],
+
+["សូម","Please","제발","ការគួរសម"],
+
+["មិនអីទេ","You're welcome","천만에요","ការគួរសម"],
+
+["ឈ្មោះ","Name","이름","មនុស្ស"],
+
+["មិត្ត","Friend","친구","មនុស្ស"],
+
+["គ្រួសារ","Family","가족","មនុស្ស"],
+
+["ឪពុក","Father","아버지","គ្រួសារ"],
+
+["ម្តាយ","Mother","어머니","គ្រួសារ"],
+
+["ផ្ទះ","House","집","ជីវិតប្រចាំថ្ងៃ"],
+
+["បន្ទប់","Room","방","ជីវិតប្រចាំថ្ងៃ"],
+
+["ទឹក","Water","물","អាហារ"],
+
+["បាយ","Rice / meal","밥","អាហារ"],
+
+["អាហារ","Food","음식","អាហារ"],
+
+["កាហ្វេ","Coffee","커피","ភេសជ្ជៈ"],
+
+["តែ","Tea","차","ភេសជ្ជៈ"],
+
+["សាច់","Meat","고기","អាហារ"],
+
+["ត្រី","Fish","생선","អាហារ"],
+
+["បន្លែ","Vegetables","채소","អាហារ"],
+
+["ផ្លែឈើ","Fruit","과일","អាហារ"],
+
+["ផ្សារ","Market","시장","កន្លែង"],
+
+["ហាង","Shop","가게","កន្លែង"],
+
+["ភោជនីយដ្ឋាន","Restaurant","식당","កន្លែង"],
+
+["សាលា","School","학교","កន្លែង"],
+
+["មន្ទីរពេទ្យ","Hospital","병원","កន្លែង"],
+
+["ធនាគារ","Bank","은행","កន្លែង"],
+
+["ការងារ","Work","일","ការងារ"],
+
+["ក្រុមហ៊ុន","Company","회사","ការងារ"],
+
+["ថៅកែ","Boss","사장님","ការងារ"],
+
+["បុគ្គលិក","Employee","직원","ការងារ"],
+
+["ប្រាក់","Money","돈","ហិរញ្ញវត្ថុ"],
+
+["តម្លៃ","Price","가격","ការទិញ"],
+
+["ថ្លៃ","Expensive","비싸다","ការទិញ"],
+
+["ថោក","Cheap","싸다","ការទិញ"],
+
+["ទិញ","Buy","사다","កិរិយាសព្ទ"],
+
+["លក់","Sell","팔다","កិរិយាសព្ទ"],
+
+["ទៅ","Go","가다","កិរិយាសព្ទ"],
+
+["មក","Come","오다","កិរិយាសព្ទ"],
+
+["ញ៉ាំ","Eat","먹다","កិរិយាសព្ទ"],
+
+["ផឹក","Drink","마시다","កិរិយាសព្ទ"],
+
+["គេង","Sleep","자다","កិរិយាសព្ទ"],
+
+["ធ្វើការ","Work","일하다","កិរិយាសព្ទ"],
+
+["រៀន","Study / learn","배우다","កិរិយាសព្ទ"],
+
+["និយាយ","Speak","말하다","កិរិយាសព្ទ"],
+
+["ស្តាប់","Listen","듣다","កិរិយាសព្ទ"],
+
+["មើល","See / watch","보다","កិរិយាសព្ទ"],
+
+["អាន","Read","읽다","កិរិយាសព្ទ"],
+
+["សរសេរ","Write","쓰다","កិរិយាសព្ទ"],
+
+["ចង់","Want","원하다","កិរិយាសព្ទ"],
+
+["ចូលចិត្ត","Like","좋아하다","អារម្មណ៍"],
+
+["ស្រឡាញ់","Love","사랑하다","អារម្មណ៍"],
+
+["ល្អ","Good","좋다","គុណនាម"],
+
+["អាក្រក់","Bad","나쁘다","គុណនាម"],
+
+["ធំ","Big","크다","គុណនាម"],
+
+["តូច","Small","작다","គុណនាម"],
+
+["ថ្មី","New","새롭다","គុណនាម"],
+
+["ចាស់","Old","오래되다","គុណនាម"],
+
+["ក្តៅ","Hot","덥다","គុណនាម"],
+
+["ត្រជាក់","Cold","춥다","គុណនាម"],
+
+["លឿន","Fast","빠르다","គុណនាម"],
+
+["យឺត","Slow","느리다","គុណនាម"],
+
+["ថ្ងៃនេះ","Today","오늘","ពេលវេលា"],
+
+["ម្សិលមិញ","Yesterday","어제","ពេលវេលា"],
+
+["ថ្ងៃស្អែក","Tomorrow","내일","ពេលវេលា"],
+
+["ពេលព្រឹក","Morning","아침","ពេលវេលា"],
+
+["យប់","Night","밤","ពេលវេលា"],
+
+["ឥឡូវនេះ","Now","지금","ពេលវេលា"],
+
+["ម៉ោង","Hour / time","시간","ពេលវេលា"],
+
+["មួយ","One","하나","លេខ"],
+
+["ពីរ","Two","둘","លេខ"],
+
+["បី","Three","셋","លេខ"],
+
+["បួន","Four","넷","លេខ"],
+
+["ប្រាំ","Five","다섯","លេខ"],
+
+["កម្ពុជា","Cambodia","캄보디아","ប្រទេស"],
+
+["កូរ៉េ","Korea","한국","ប្រទេស"],
+
+["អង់គ្លេស","English","영어","ភាសា"],
+
+["កូរ៉េ","Korean","한국어","ភាសា"],
+
+["ខ្មែរ","Khmer","크메르어","ភាសា"],
+
+["ខ្ញុំ","I / me","저 / 나","សព្វនាម"],
+
+["អ្នក","You","당신 / 너","សព្វនាម"],
+
+["គាត់","He / she","그 / 그녀","សព្វនាម"],
+
+["នេះ","This","이것","សព្វនាម"],
+
+["នោះ","That","그것","សព្វនាម"]
+
+];
+
+
+/* =========================
+   SENTENCES
+========================= */
+
+const sentences = [
+
+["ខ្ញុំមកពីកម្ពុជា។",
+"I am from Cambodia.",
+"저는 캄보디아에서 왔어요."],
+
+["ខ្ញុំចង់រៀនភាសាអង់គ្លេស។",
+"I want to learn English.",
+"저는 영어를 배우고 싶어요."],
+
+["ខ្ញុំចង់រៀនភាសាកូរ៉េ។",
+"I want to learn Korean.",
+"저는 한국어를 배우고 싶어요."],
+
+["តើអ្នកសុខសប្បាយទេ?",
+"How are you?",
+"잘 지내세요?"],
+
+["ខ្ញុំមិនយល់ទេ។",
+"I don't understand.",
+"이해하지 못해요."],
+
+["សូមនិយាយយឺតៗ។",
+"Please speak slowly.",
+"천천히 말해 주세요."],
+
+["នេះមានតម្លៃប៉ុន្មាន?",
+"How much is this?",
+"이거 얼마예요?"],
+
+["ខ្ញុំចង់ទិញវា។",
+"I want to buy it.",
+"이것을 사고 싶어요."],
+
+["ខ្ញុំកំពុងធ្វើការ។",
+"I am working.",
+"저는 일하고 있어요."],
+
+["ខ្ញុំទៅសាលា។",
+"I go to school.",
+"저는 학교에 가요."],
+
+["សូមអរគុណច្រើន។",
+"Thank you very much.",
+"정말 감사합니다."],
+
+["ជួបគ្នាថ្ងៃស្អែក។",
+"See you tomorrow.",
+"내일 만나요."]
+
+];
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+let favorites =
+JSON.parse(
+localStorage.getItem("learnTrioFav") || "[]"
+);
+
+
+/* =========================
+   SPEECH
+========================= */
 
 function speak(text,lang){
 
-  if(!text) return;
+  if(!("speechSynthesis" in window)){
+    alert("ទូរស័ព្ទរបស់អ្នកមិនគាំទ្រសំឡេងទេ");
+    return;
+  }
 
-  const speech =
-    new SpeechSynthesisUtterance(text);
+  speechSynthesis.cancel();
 
-  speech.lang=lang;
+  const u =
+  new SpeechSynthesisUtterance(text);
 
-  window.speechSynthesis.cancel();
+  u.lang = lang;
 
-  window.speechSynthesis.speak(speech);
+  speechSynthesis.speak(u);
 }
 
 
-async function translateText(){
+/* =========================
+   TABS
+========================= */
 
-  const text =
-    document.getElementById("inputText").value.trim();
+function openTab(id){
 
-  const from =
-    document.getElementById("from").value;
+  document
+  .querySelectorAll(".tabs button")
+  .forEach(b=>{
 
-  const to =
-    document.getElementById("to").value;
+    b.classList.toggle(
+      "active",
+      b.dataset.tab===id
+    );
+
+  });
+
+  document
+  .querySelectorAll(".panel")
+  .forEach(p=>{
+
+    p.classList.toggle(
+      "active",
+      p.id===id
+    );
+
+  });
+
+  if(id==="words"){
+    renderWords();
+  }
+
+}
+
+
+/* =========================
+   TAB BUTTON
+========================= */
+
+document
+.querySelectorAll(".tabs button")
+.forEach(button=>{
+
+  button.onclick=()=>{
+    openTab(button.dataset.tab);
+  };
+
+});
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+function toggleFav(index){
+
+  if(favorites.includes(index)){
+
+    favorites =
+    favorites.filter(
+      x=>x!==index
+    );
+
+  }else{
+
+    favorites.push(index);
+
+  }
+
+  localStorage.setItem(
+    "learnTrioFav",
+    JSON.stringify(favorites)
+  );
+
+  renderWords();
+}
+
+
+/* =========================
+   RENDER WORDS
+========================= */
+
+function renderWords(){
+
+  const search =
+  document
+  .getElementById("search")
+  .value
+  .toLowerCase();
 
   const result =
-    document.getElementById("result");
+  words
+  .map((x,i)=>[x,i])
+  .filter(([x])=>
+    x
+    .join(" ")
+    .toLowerCase()
+    .includes(search)
+  );
 
-  if(!text){
 
-    result.innerText=
-      "⚠️ សូមបញ្ចូលអត្ថបទជាមុនសិន។";
+  document
+  .getElementById("wordGrid")
+  .innerHTML =
 
-    return;
-  }
+  result.map(([x,i])=>`
 
-  if(from===to){
+    <div class="card">
 
-    result.innerText=text;
+      <div class="word">
+        ${x[0]}
+      </div>
 
-    return;
-  }
+      <div class="en">
+        ${x[1]}
+      </div>
 
-  result.innerText=
-    "⏳ កំពុងបកប្រែ...";
+      <div class="ko">
+        ${x[2]}
+      </div>
 
-  try{
+      <div class="muted">
+        ${x[3]}
+      </div>
 
-    const url =
-      "https://api.mymemory.translated.net/get?q="+
-      encodeURIComponent(text)+
-      "&langpair="+
-      from+"|"+to;
+      <div class="actions">
 
-    const response =
-      await fetch(url);
+        <button
+        class="sound"
+        onclick="speak('${x[1]}','en-US')">
+        🔊 EN
+        </button>
 
-    const data =
-      await response.json();
+        <button
+        class="sound"
+        onclick="speak('${x[2]}','ko-KR')">
+        🔊 KR
+        </button>
 
-    if(
-      data.responseData &&
-      data.responseData.translatedText
-    ){
+        <button
+        class="fav ${favorites.includes(i) ? "on":""}"
+        onclick="toggleFav(${i})">
 
-      result.innerText =
-        data.responseData.translatedText;
+        ${favorites.includes(i) ? "⭐" : "☆"}
 
-    }else{
+        </button>
 
-      throw new Error("Translation failed");
+      </div>
 
-    }
+    </div>
 
-  }catch(error){
+  `).join("");
 
-    result.innerText=
-      "❌ មិនអាចបកប្រែបានទេ។ សូមពិនិត្យ Internet ហើយសាកម្ដងទៀត។";
+
+  document
+  .getElementById("count")
+  .textContent =
+  words.length;
+
+}
+
+
+/* =========================
+   SENTENCES
+========================= */
+
+document
+.getElementById("sentenceGrid")
+.innerHTML =
+
+sentences.map(x=>`
+
+<div class="card">
+
+  <div class="word">
+    ${x[0]}
+  </div>
+
+  <div class="en">
+    ${x[1]}
+  </div>
+
+  <div class="ko">
+    ${x[2]}
+  </div>
+
+  <div class="actions">
+
+    <button
+    class="sound"
+    onclick="speak('${x[1]}','en-US')">
+    🔊 English
+    </button>
+
+    <button
+    class="sound"
+    onclick="speak('${x[2]}','ko-KR')">
+    🔊 Korean
+    </button>
+
+  </div>
+
+</div>
+
+`).join("");
+
+
+/* =========================
+   QUIZ
+========================= */
+
+function answer(button,correct){
+
+  document
+  .querySelectorAll(".choice")
+  .forEach(b=>{
+    b.disabled=true;
+  });
+
+
+  if(correct){
+
+    button.classList.add("correct");
+
+    document
+    .getElementById("result")
+    .textContent =
+    "✅ ត្រឹមត្រូវ!";
+
+  }else{
+
+    button.classList.add("wrong");
+
+    document
+    .getElementById("result")
+    .textContent =
+    "❌ មិនត្រឹមត្រូវ — ចម្លើយគឺ B. Hello";
 
   }
 
 }
 
 
-function copyText(){
+function resetQuiz(){
 
-  const text =
-    document.getElementById("result").innerText;
+  document
+  .querySelectorAll(".choice")
+  .forEach(b=>{
 
-  navigator.clipboard.writeText(text)
-  .then(function(){
+    b.disabled=false;
 
-    alert("✅ បានចម្លង!");
-
-  })
-  .catch(function(){
-
-    alert("❌ មិនអាចចម្លងបានទេ។");
+    b.classList.remove(
+      "correct",
+      "wrong"
+    );
 
   });
 
-}
 
-
-function speakTranslation(){
-
-  const text =
-    document.getElementById("result").innerText;
-
-  const lang =
-    document.getElementById("to").value;
-
-  let speechLang="en-US";
-
-  if(lang==="km"){
-    speechLang="km-KH";
-  }
-
-  if(lang==="ko"){
-    speechLang="ko-KR";
-  }
-
-  speak(text,speechLang);
+  document
+  .getElementById("result")
+  .textContent="";
 
 }
 
 
-function searchLessons(){
+/* =========================
+   START
+========================= */
 
-  const keyword =
-    document.getElementById("search")
-    .value
-    .toLowerCase();
-
-  const lessons =
-    document.querySelectorAll(".lesson");
-
-  lessons.forEach(function(lesson){
-
-    const text =
-      lesson.innerText.toLowerCase();
-
-    if(text.includes(keyword)){
-      lesson.style.display="block";
-    }else{
-      lesson.style.display="none";
-    }
-
-  });
-
-}
+renderWords();
 
 </script>
 
 </body>
-        </html>
+</html>
