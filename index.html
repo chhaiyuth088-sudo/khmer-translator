@@ -36,7 +36,6 @@ header {
 }
 
 .wrap { max-width: 900px; margin: auto; }
-
 .top { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-size: 22px; font-weight: 800; }
 .flags { font-size: 16px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; }
@@ -238,11 +237,11 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
     </div>
     <div class="hero">
       <h1>រៀនភាសា ងាយៗ រៀនរាល់ថ្ងៃ 🚀</h1>
-      <p>រៀន Khmer • English • Korean គ្រប់កម្រិត (A1 - C2) + API បកប្រែ</p>
+      <p>រៀន Khmer • English • Korean + តេស្តសមត្ថភាព EPS-TOPIK</p>
     </div>
     <div class="stats">
       <div class="stat"><b id="count">0</b><span>ពាក្យ</span></div>
-      <div class="stat"><b>12</b><span>ប្រយោគ</span></div>
+      <div class="stat"><b id="qCount">0</b><span>សំណួរ</span></div>
       <div class="stat"><b>5,000+</b><span>API Database</span></div>
     </div>
   </div>
@@ -252,15 +251,15 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
   <div class="tabs">
     <button class="active" data-tab="home">🏠 ដើម</button>
     <button data-tab="words">📚 ពាក្យ</button>
-    <button data-tab="api-tool">🌐 ស្វែងរក API (5000+)</button>
-    <button data-tab="grammar">📖 Grammar</button>
+    <button data-tab="quiz">📝 ធ្វើលំហាត់ (1420 សំណួរ)</button>
+    <button data-tab="api-tool">🌐 ស្វែងរក API</button>
   </div>
 
   <!-- HOME PANEL -->
   <section id="home" class="panel active">
     <div class="card">
       <h3 style="margin:0 0 6px;">🔥 មេរៀនប្រចាំថ្ងៃ</h3>
-      <p style="margin:0; color:var(--muted);">រៀបចំឡើងតាមកម្រិត A1 ដល់ C2 សម្រាប់អ្នករៀនដំបូងរហូតដល់កម្រិតខ្ពស់ space</p>
+      <p style="margin:0; color:var(--muted);">រៀបចំឡើងតាមកម្រិត A1 ដល់ C2 សម្រាប់អ្នករៀនដំបូងរហូតដល់កម្រិតខ្ពស់។</p>
       <div class="actions" style="margin-top:16px;">
         <button class="btn primary" onclick="openTab('words')">ចាប់ផ្តើមរៀន →</button>
       </div>
@@ -270,7 +269,6 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
   <!-- WORDS PANEL -->
   <section id="words" class="panel">
     <h2 style="font-size: 20px; margin-top: 0;">📚 វចនានុក្រមតាមកម្រិត</h2>
-    
     <div class="level-filter">
       <button class="level-btn active" onclick="filterLevel('ALL')">ទាំងអស់</button>
       <button class="level-btn" onclick="filterLevel('A1')">A1</button>
@@ -285,7 +283,17 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
     <button id="loadMoreBtn" class="load-more" style="display:none;" onclick="loadMore()">👇 មើលបន្ថែមទៀត...</button>
   </section>
 
-  <!-- MULTI-LANGUAGE API SEARCH TOOL -->
+  <!-- QUIZ PANEL -->
+  <section id="quiz" class="panel">
+    <h2 style="font-size: 20px; margin-top: 0;">📝 តេស្តសមត្ថភាព (EPS-TOPIK)</h2>
+    <div class="card">
+      <div id="quizQuestion" class="word" style="font-size:18px;">កំពុង Load សំណួរ...</div>
+      <div id="quizOptions" style="display:flex; flex-direction:column; gap:10px; margin-top:16px;"></div>
+      <div id="quizResult" style="margin-top:14px; font-weight:bold;"></div>
+    </div>
+  </section>
+
+  <!-- API TRANSLATOR PANEL -->
   <section id="api-tool" class="panel">
     <h2 style="font-size: 20px; margin-top: 0;">🌐 បកប្រែភាសា (Free API 5,000+)</h2>
     <div class="api-box">
@@ -294,23 +302,17 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
           <option value="en" selected>🇬🇧 English</option>
           <option value="km">🇰🇭 Khmer</option>
           <option value="ko">🇰🇷 Korean</option>
-          <option value="ja">🇯🇵 Japanese</option>
-          <option value="zh">🇨🇳 Chinese</option>
         </select>
-
         <button class="swap-btn" onclick="swapLanguages()">⇄</button>
-
         <select id="toLang" class="lang-select">
           <option value="km" selected>🇰🇭 Khmer</option>
           <option value="en">🇬🇧 English</option>
           <option value="ko">🇰🇷 Korean</option>
-          <option value="ja">🇯🇵 Japanese</option>
-          <option value="zh">🇨🇳 Chinese</option>
         </select>
       </div>
 
       <div style="display:flex; gap:8px;">
-        <input id="apiInput" class="search" placeholder="វាយបញ្ចូលពាក្យ ឬប្រយោគ..." onkeyup="if(event.key==='Enter') translateWithAPI()">
+        <input id="apiInput" class="search" placeholder="វាយបញ្ចូលពាក្យ..." onkeyup="if(event.key==='Enter') translateWithAPI()">
         <button class="btn primary" style="white-space:nowrap;" onclick="translateWithAPI()">បកប្រែ</button>
       </div>
 
@@ -327,43 +329,37 @@ footer { text-align: center; padding: 24px 10px; color: var(--muted); font-size:
       </div>
     </div>
   </section>
-
-  <!-- GRAMMAR PANEL -->
-  <section id="grammar" class="panel">
-    <h2 style="font-size: 20px; margin-top: 0;">📖 វេយ្យាករណ៍</h2>
-    <div class="grid">
-      <div class="card">
-        <span class="badge">A1 - Beginner</span>
-        <h3 style="margin-top:0;">🇬🇧 Verb to be</h3>
-        <p><b>I am a student.</b></p>
-        <p class="muted">ខ្ញុំជាសិស្ស។</p>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
-  🌏 Learn Trio • Fast Load Architecture<br>
-  Khmer 🇰🇭 • English 🇬🇧 • Korean 🇰🇷
+  🌏 Learn Trio • Practice & Exam Test
 </footer>
 
 <script>
 let words = [];
 let filteredWords = [];
+let questions = [];
+let currentQIndex = 0;
 let currentPage = 1;
 const pageSize = 20;
 let currentLevel = "ALL";
 let lastTranslatedText = "";
 
+// Load JSON Databases
 async function loadJSONData() {
   try {
     const res = await fetch('words.json');
     words = await res.json();
     document.getElementById("count").textContent = words.length;
     resetAndRender();
-  } catch (err) {
-    console.error("Error loading JSON database:", err);
-  }
+  } catch (err) { console.error("Error loading words:", err); }
+
+  try {
+    const qRes = await fetch('questions.json');
+    questions = await qRes.json();
+    document.getElementById("qCount").textContent = questions.length;
+    showQuestion();
+  } catch (err) { console.error("Error loading questions:", err); }
 }
 
 function speak(text, langCode) {
@@ -394,24 +390,19 @@ function filterLevel(level) {
 function resetAndRender() {
   currentPage = 1;
   const search = (document.getElementById("search")?.value || "").toLowerCase();
-  
   filteredWords = words.filter(item => {
     const matchLevel = (currentLevel === "ALL" || item.level === currentLevel);
-    const matchSearch = item.kh.toLowerCase().includes(search) || 
-                        item.en.toLowerCase().includes(search) || 
-                        item.ko.toLowerCase().includes(search);
+    const matchSearch = item.kh.toLowerCase().includes(search) || item.en.toLowerCase().includes(search) || item.ko.toLowerCase().includes(search);
     return matchLevel && matchSearch;
   });
-
   document.getElementById("wordGrid").innerHTML = "";
   renderBatch();
 }
 
 function renderBatch() {
   const wordGrid = document.getElementById("wordGrid");
-  const start = 0;
   const end = currentPage * pageSize;
-  const itemsToRender = filteredWords.slice(start, end);
+  const itemsToRender = filteredWords.slice(0, end);
 
   wordGrid.innerHTML = itemsToRender.map((x) => `
     <div class="card">
@@ -426,17 +417,41 @@ function renderBatch() {
     </div>
   `).join("");
 
-  const loadBtn = document.getElementById("loadMoreBtn");
-  if (end < filteredWords.length) {
-    loadBtn.style.display = "block";
-  } else {
-    loadBtn.style.display = "none";
-  }
+  document.getElementById("loadMoreBtn").style.display = (end < filteredWords.length) ? "block" : "none";
 }
 
 function loadMore() {
   currentPage++;
   renderBatch();
+}
+
+// QUIZ LOGIC
+function showQuestion() {
+  if (!questions.length) return;
+  const q = questions[currentQIndex];
+  document.getElementById("quizQuestion").textContent = `សំណួរទី ${currentQIndex + 1}: ${q.question}`;
+  
+  const optsDiv = document.getElementById("quizOptions");
+  optsDiv.innerHTML = q.options.map((opt, idx) => `
+    <button class="btn" style="text-align:left; padding:12px; width:100%;" onclick="checkAnswer(${idx})">${idx + 1}. ${opt}</button>
+  `).join("");
+  document.getElementById("quizResult").textContent = "";
+}
+
+function checkAnswer(selectedIdx) {
+  const q = questions[currentQIndex];
+  const resDiv = document.getElementById("quizResult");
+  if (selectedIdx === q.answer) {
+    resDiv.textContent = "✅ ត្រឹមត្រូវ! ចម្លើយត្រឹមត្រូវ";
+    resDiv.style.color = "green";
+  } else {
+    resDiv.textContent = `❌ ខុសហើយ! ចម្លើយត្រូវគឺ៖ ${q.options[q.answer]}`;
+    resDiv.style.color = "red";
+  }
+  setTimeout(() => {
+    currentQIndex = (currentQIndex + 1) % questions.length;
+    showQuestion();
+  }, 2000);
 }
 
 function swapLanguages() {
@@ -451,7 +466,6 @@ async function translateWithAPI() {
   const query = document.getElementById("apiInput").value.trim();
   const from = document.getElementById("fromLang").value;
   const to = document.getElementById("toLang").value;
-
   if (!query) return;
 
   const resBox = document.getElementById("apiResult");
@@ -465,15 +479,11 @@ async function translateWithAPI() {
   try {
     const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=${from}|${to}`);
     const data = await res.json();
-    
     lastTranslatedText = data.responseData.translatedText;
     textTarget.textContent = lastTranslatedText;
-
-    const langMap = { en: 'en-US', km: 'km-KH', ko: 'ko-KR', ja: 'ja-JP', zh: 'zh-CN' };
+    const langMap = { en: 'en-US', km: 'km-KH', ko: 'ko-KR' };
     document.getElementById("btnSpeak").onclick = () => speak(lastTranslatedText, langMap[to] || 'en-US');
-  } catch (err) {
-    textTarget.textContent = "មានបញ្ហាក្នុងការភ្ជាប់ API";
-  }
+  } catch (err) { textTarget.textContent = "មានបញ្ហាក្នុងការភ្ជាប់ API"; }
 }
 
 function copyResult() {
@@ -486,3 +496,4 @@ loadJSONData();
 </script>
 </body>
 </html>
+
